@@ -47,4 +47,14 @@
     width: 100%;
     height: 600px;
   }
+  button{
+    margin-top: 5px;
+    height: 35px;
+    width: 90px;
+    border: none;
+    background-color: #409eff;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+  }
 </style>
