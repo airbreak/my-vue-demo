@@ -1,10 +1,7 @@
 <template>
   <div class="link-box">
-    <router-link to="notheme" tag="a" active-class="selected">
-      默认地图样式
-    </router-link>
-    <router-link to="personalitytheme" tag="a" active-class="selected">
-      个性化地图样式
+    <router-link v-for="item in menuList" :to="item.url" tag="a" active-class="selected">
+      {{item.name}}
     </router-link>
   </div>
 </template>
@@ -12,18 +9,37 @@
   export default {
     data () {
       return {
+        menuList: []
       }
     },
+    mounted(){
+      this.$nextTick(()=>{
+        this.initMenuList()
+      })
+    },
+    methods: {
+      initMenuList () {
+        this.menuList = [
+          { name: '计算属性',url: 'computed'},
+          { name: 'debounce搜索',url: 'debounceSerch'},
+        ]
+      }
+    }
   }
 </script>
 <style>
   .link-box{
     margin-top:20px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
   }
   .link-box a{
-    margin-left: 10px;
+    margin: 10px;
     text-decoration: none;
     cursor: pointer;
+    color: #333;
   }
   .link-box a:hover{
     text-decoration: underline;
