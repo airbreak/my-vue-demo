@@ -21,7 +21,7 @@
       initMenuList () {
         this.menuList = [
           { name: '计算属性',url: 'computed'},
-          { name: 'debounce搜索',url: 'debounceSerch'},
+          { name: 'debounce搜索',url: 'debounceSearch'},
         ]
       }
     }
