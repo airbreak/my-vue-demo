@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from '@/pages/home'
 import Computed from '@/pages/computed.vue'
 import DebounceSearch from '@/pages/debounceSearch.vue'
+import testform from '@/pages/testform.vue'
 
 Vue.use(Router)
 export default new Router({
@@ -21,6 +22,11 @@ export default new Router({
       path: '/debounceSearch',
       name: 'debounceSearch',
       component: DebounceSearch
+    },
+    {
+      path: '/testform',
+      name: 'testform',
+      component: testform
     }
   ]
 })

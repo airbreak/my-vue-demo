@@ -1,17 +1,24 @@
 <template>
   <div class="wrapper-box">
-    <el-form ref="form" label-width="120px">
+    <el-form ref="form" label-width="120px" :model="forData">
       <el-form-item label="国家:">
-        <el-input v-model="country"></el-input>
+        <el-input v-model="forData.country"></el-input>
       </el-form-item>
       <el-form-item label="省份:">
-        <el-input v-model="province"></el-input>
+        <el-input v-model="forData.province"></el-input>
       </el-form-item>
       <el-form-item label="城市:">
-        <el-input v-model="city"></el-input>
+        <el-input v-model="forData.city"></el-input>
       </el-form-item>
       <el-form-item label="地址:">
         {{ location }}
+      </el-form-item>
+      <el-form-item label="年龄:" prop="age" :rules="rules.age">
+        <el-input v-model.number="forData.age"
+                  type="tel"
+                  auto-complete="off"
+                  prefix-icon="el-icon-star-off"
+                  suffix-icon="el-icon-star-off"></el-input>
       </el-form-item>
       <el-form-item>
        <el-button type="primary" @click="getLocation">获取地址</el-button>
@@ -23,15 +30,25 @@
   export default {
     data () {
       return {
-        country:'中国',
-        province: '湖北',
-        city: '武汉'
+        forData:{
+          country: '中国',
+          province: '湖北',
+          city: '武汉',
+          age: 18,
+        },
+        rules:{
+          age:[
+                { required: true, message: '必填',trigger: 'blur'},
+                { type: 'number', message: 'age must be a number'}
+                // { pattern: /^(\\d|[1-9]\\d|100)$/, message: '0-100'}
+              ]
+        }
       }
     },
     computed: {
       location:{
         get() {
-          return this.country + ' '+ this.province + ' ' + this.city
+          return this.forData.country + ' '+ this.forData.province + ' ' + this.forData.city + '年龄 :' + this.forData.age
         },
         // set(newValue){
         //   var names = newValue.split(' ')

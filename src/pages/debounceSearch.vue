@@ -4,7 +4,7 @@
     <div class="wrapper-box">
         <div>
           <span>输入搜索内容</span>
-          <el-input placeholder="搜索内容，并以？结束" :clearable="true" v-model="keywords"></el-input>
+          <el-input placeholder="搜索内容，并以？结束" :clearable="true" v-model.number="keywords"></el-input>
         </div>
         <div>
           <span>结果:</span>
