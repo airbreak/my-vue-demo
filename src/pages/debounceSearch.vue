@@ -4,7 +4,7 @@
     <div class="wrapper-box">
         <div>
           <span>输入搜索内容</span>
-          <el-input placeholder="搜索内容，并以？结束" v-model="keywords"></el-input>
+          <el-input placeholder="搜索内容，并以？结束" :clearable="true" v-model="keywords"></el-input>
         </div>
         <div>
           <span>结果:</span>
@@ -14,6 +14,8 @@
 </template>
 
 <script>
+import { Utils } from './../assets/js/utils'
+const  utils = new Utils()
 export default {
   name: "debounce-search",
   data() {
@@ -22,41 +24,38 @@ export default {
       result:''
     }
   },
+  mounted() {
+    this.$nextTick(()=>{
+      this.doSearchFn = this.doSearch()
+    })
+  },
   watch: {
     keywords (newVal,oldVal) {
       this.result = '等待输入结束……'
-      this.doSearch()
+      this.doSearchFn()
     }
   },
   methods:{
     doSearch (){
-      return this.debounce(()=>{
-        if (this.keywords.indexOf('?') === -1) {
-          this.result = 'Questions usually contain a question mark. ;-)'
+     return utils.debounce(() =>{
+        let reg = /.*(？|\?)/
+        console.log( reg.test(this.keywords))
+        if ( !reg.test(this.keywords)) {
+          this.result = '亲，搜索问题要以问号结尾哦. ;-)'
           return
         }
         this.result = 'Thinking...'
         window.setTimeout(()=>{
           this.result = '哈哈，搜索到了。这个是惊天的秘密 ---' +this.keywords
         },1000)
+
       },500)
     },
-    /**
-     * 当调用动作触发一段时间后，才会执行该动作，若在这段时间间隔内又调用此动作则将重新计算时间间隔
-     * @param {*} action
-     * @param {*} delay
-     */
-    debounce(action, delay) {
-      var timer = null;
-      return function() {
-        var self = this,
-          args = arguments;
-        clearTimeout(timer);
-        timer = setTimeout(function() {
-          action.apply(self, args)
-        }, delay);
-      }
+
+    getData () {
+      console.log(123)
     }
+
   }
 }
 </script>
