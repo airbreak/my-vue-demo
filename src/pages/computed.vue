@@ -24,12 +24,16 @@
        <el-button type="primary" @click="getLocation">获取地址</el-button>
       </el-form-item>
     </el-form>
+    <transition :name="transitionName">
+      <div>1231332</div>
+    </transition>
   </div>
 </template>
 <script>
   export default {
     data () {
       return {
+        transitionName: 'slide-right',
         forData:{
           country: '中国',
           province: '湖北',
@@ -60,6 +64,7 @@
     methods:{
       getLocation(){
         this.$message(this.location);
+        this.transitionName = this.transitionName != 'slide-right' ? 'slide-right':''
       }
     }
   }

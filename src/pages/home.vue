@@ -22,6 +22,8 @@
         this.menuList = [
           { name: '计算属性',url: 'computed'},
           { name: 'debounce搜索',url: 'debounceSearch'},
+          { name: 'mockjs试用',url: 'mockjs'},
+          { name: '上传图片',url: 'upload'},
         ]
       }
     }

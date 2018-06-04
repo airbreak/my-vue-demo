@@ -4,6 +4,8 @@ import Home from '@/pages/home'
 import Computed from '@/pages/computed.vue'
 import DebounceSearch from '@/pages/debounceSearch.vue'
 import testform from '@/pages/testform.vue'
+import mockjs from '@/pages/mockjs.vue'
+import upload from '@/pages/upload.vue'
 
 Vue.use(Router)
 export default new Router({
@@ -27,6 +29,16 @@ export default new Router({
       path: '/testform',
       name: 'testform',
       component: testform
+    },
+    {
+      path: '/mockjs',
+      name: 'mockjs',
+      component: mockjs
+    },
+    {
+      path: '/upload',
+      name: 'upload',
+      component: upload
     }
   ]
 })
