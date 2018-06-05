@@ -6,6 +6,6 @@ import request from '@/utils/request'
 export function getUserDetail(){
   return request({
     url: '/v1/user/detail',
-    methon: 'get'
+    methond: 'get'
   })
 }

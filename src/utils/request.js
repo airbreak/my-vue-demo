@@ -4,7 +4,7 @@
 import axios from 'axios'
 import {Message, MessageBox} from 'element-ui'
 const service = axios.create({
-  baseUrl: process.env.BASE_API,
+  baseURL: process.env.BASE_API,
   tomeout: 15000
 })
 //
@@ -27,6 +27,9 @@ service.interceptors.response.use(
           type:'error',
           duration: 5 *1000
         })
+    }
+    else {
+      return response.data
     }
 
     if(res.code === 50008 || res.code ===50012){

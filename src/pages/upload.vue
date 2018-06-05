@@ -23,7 +23,7 @@
   export default {
     data() {
       return {
-        listLoading:false,
+        listLoading:true,
         imgUpload: {
           multiple: false,
           dialogImageUrl: '',
@@ -36,13 +36,10 @@
     mounted () {
       this.$nextTick(()=>{
         getUserDetail().then(response => {
-          console.log(response)
           this.listLoading = false
-          this.form.name = response.name
-          let url = response.avatar
+          let url = response.data.avatar
           this.imgUpload.dialogImageUrl = url
           this.imgUpload.list = [{name:'图片',url: url}]
-          this.form.imgUrl = url
         })
       })
     },
