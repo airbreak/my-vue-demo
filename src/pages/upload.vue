@@ -2,16 +2,20 @@
 <template>
     <div class="wrapper-box" v-loading="listLoading">
       <el-upload
-        action="https://jsonplaceholder.typicode.com/posts/"
+        :action="imgUpload.action"
+        ref="upload"
         list-type="picture-card"
+        name="img"
         :limit="1"
         :disabled="imgUpload.disabled"
         :multiple="imgUpload.multiple"
         :on-preview="handlePictureCardPreview"
         :file-list="imgUpload.list"
+        :auto-upload="imgUpload.auto"
         :on-remove="handleRemove">
         <i class="el-icon-plus"></i>
       </el-upload>
+      <el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传服务器</el-button>
       <el-dialog :visible.sync="imgUpload.dialogVisible">
         <img width="100%" :src="imgUpload.dialogImageUrl" alt="">
       </el-dialog>
@@ -23,24 +27,26 @@
   export default {
     data() {
       return {
-        listLoading:true,
+        listLoading:false,
         imgUpload: {
+          action: process.env.BASE_API + '/v1/upload',
           multiple: false,
           dialogImageUrl: '',
           dialogVisible: false,
           list:[],
-          disabled: false
+          disabled: false,
+          auto: false
         }
       };
     },
     mounted () {
       this.$nextTick(()=>{
-        getUserDetail().then(response => {
-          this.listLoading = false
-          let url = response.data.avatar
-          this.imgUpload.dialogImageUrl = url
-          this.imgUpload.list = [{name:'图片',url: url}]
-        })
+        // getUserDetail().then(response => {
+        //   this.listLoading = false
+        //   let url = response.data.avatar
+        //   this.imgUpload.dialogImageUrl = url
+        //   this.imgUpload.list = [{name:'图片',url: url}]
+        // })
       })
     },
     methods: {
@@ -51,6 +57,9 @@
       handlePictureCardPreview(file) {
         this.imgUpload.dialogImageUrl = file.url;
         this.imgUpload.dialogVisible = true;
+      },
+      submitUpload() {
+        this.$refs.upload.submit();
       }
     }
   }
