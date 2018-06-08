@@ -6,6 +6,7 @@ import DebounceSearch from '@/pages/debounceSearch.vue'
 import testform from '@/pages/testform.vue'
 import mockjs from '@/pages/mockjs.vue'
 import upload from '@/pages/upload.vue'
+import loadmore from '@/pages/loadMoreAndPush.vue'
 
 Vue.use(Router)
 export default new Router({
@@ -39,6 +40,11 @@ export default new Router({
       path: '/upload',
       name: 'upload',
       component: upload
+    },
+    {
+      path: '/loadmore',
+      name: 'loadmore',
+      component: loadmore
     }
   ]
 })

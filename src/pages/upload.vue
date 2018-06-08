@@ -22,31 +22,31 @@
     </div>
 </template>
 <script>
-  import {getUserDetail} from '../api/upload'
+  import {getUserDetail,deteleOne} from '../api/upload'
 
   export default {
     data() {
       return {
         listLoading:false,
         imgUpload: {
-          action: process.env.BASE_API + '/v1/upload',
+          action: 'http://v.cn/api/v1/upload',
           multiple: false,
           dialogImageUrl: '',
           dialogVisible: false,
           list:[],
           disabled: false,
-          auto: false
+          auto: true
         }
       };
     },
     mounted () {
       this.$nextTick(()=>{
-        // getUserDetail().then(response => {
-        //   this.listLoading = false
-        //   let url = response.data.avatar
-        //   this.imgUpload.dialogImageUrl = url
-        //   this.imgUpload.list = [{name:'图片',url: url}]
-        // })
+        getUserDetail().then(response => {
+          this.listLoading = false
+          let url = response.data.avatar
+          this.imgUpload.dialogImageUrl = url
+          this.imgUpload.list = [{name:'图片',url: url}]
+        })
       })
     },
     methods: {
@@ -59,7 +59,10 @@
         this.imgUpload.dialogVisible = true;
       },
       submitUpload() {
-        this.$refs.upload.submit();
+        // this.$refs.upload.submit();
+        deteleOne().then(response => {
+          console.log(response)
+        })
       }
     }
   }

@@ -120,6 +120,16 @@ class Utils {
     }
   }
 
+  throttle(action, delay){
+    var timer = null;
+    return function () {
+      clearTimeout(timer);
+      timer = setTimeout(function() {
+        action();
+      }, delay);
+    }
+  }
+
   getQueryString(name) {
     var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
     var r = window.location.search.substr(1).match(reg);
