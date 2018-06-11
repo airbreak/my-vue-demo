@@ -1,12 +1,18 @@
 <!--Created by jiangjianming@bmkp.cn on 2018/5/31.-->
 <template>
-    <div class="wrapper-box" v-loading="listLoading">
-      <div id="news-box">
+  <div class="wrapper-box" v-loading="listLoading">
+    <div id="news-box">
         <div v-for="item in list">
           <p>{{item.title}}</p>
         </div>
+      <div class="loader"  :class="{active:loadingMoreFlag}">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
     </div>
+  </div>
 </template>
 <script>
   import {getNewsByPage} from '../api/news'
@@ -20,7 +26,8 @@
         listLoading: true,
         list: [],
         currentPageIndex: 1,
-        allLoadedEnd: false
+        allLoadedEnd: false,
+        loadingMoreFlag: false
       }
     },
     mounted () {
@@ -30,35 +37,89 @@
           this.list = response.data
         })
         this.scrollListener = utils.throttle(this.doCheck.bind(this),200)
-        let element = document.body
-        element.addEventListener('scroll', this.scrollListener)
+        document.addEventListener('scroll', this.scrollListener)
+        // document.addEventListener('scroll', function () {
+        //   console.log(123)
+        // })
       })
     },
     methods: {
       doCheck () {
-        let element = this.element
-        this.scrollTop = myScroll.getScrollTop(element)
-        let downTrigger = myScroll.getVisibleHeight(element) + this.scrollTop + 5 >= myScroll.getScrollHeight(element)
-        if(downTrigger && !this.allLoadedEnd && !this.listLoading) {
-          directive.vm.$get(this.loadDownFn)
+        if(this.allLoadedEnd || this.loadingMoreFlag){
+          return
+        }
+        let scrollTop = myScroll.getScrollTop()
+        let visibleHeight = myScroll.getVisibleHeight()
+        let scrollHeight = myScroll.getScrollHeight()
+        let downTrigger = visibleHeight +scrollTop + 55 >= scrollHeight
+        if(downTrigger) {
+          // directive.vm.$get(this.loadDownFn)
+          this.loadDownFn()
         }
       },
       loadDownFn (){
-        this.listLoading = true
+        this.loadingMoreFlag = true
+        this.currentPageIndex ++
         getNewsByPage(this.currentPageIndex).then(response => {
-          this.listLoading = false
-          this.currentPageIndex ++
-          if(response.data) {
-            if(response.data.length>0) {
-              this.list.push(...response.data)
-              this.allLoadedEnd = false
-            }else {
-              this.allLoadedEnd = true
+          window.setTimeout(()=>{
+            this.loadingMoreFlag = false
+            if(response.data) {
+              if(response.data.length>0) {
+                this.list.push(...response.data)
+                this.allLoadedEnd = false
+              }else {
+                this.allLoadedEnd = true
+              }
             }
-          }
+          },2000)
         })
       }
     }
   }
 </script>
+<style scoped lang="sass">
+  .wrapper-box
+    height: 200px
+  #news-box
+    div
+      height: 100px
+  .loader
+    height: 30px
+    display: flex
+    justify-content: center
+    span
+      display: inline-block
+      width: 15px
+      height: 15px
+      border-radius: 100%
+      margin-left: 5px
+    &.active
+      span
+        animation: loading 0.8s linear infinite alternate
+        &:nth-child(1)
+        animation-delay: -1s
+        -webkit-animation-delay: -1s
+        background-color: rgba(230, 162, 60, 0.7)
+        &:nth-child(2)
+          animation-delay: -0.6s
+          -webkit-animation-delay: -0.8s
+          background-color: rgba(64, 158, 255, 0.8)
+        &:nth-child(3)
+          animation-delay: -0.2s
+          -webkit-animation-delay: -2.2666s
+          background-color: rgba(103,194,58,0.8)
+        &:nth-child(4)
+          animation-delay: -0.8s
+          -webkit-animation-delay: -0.8s
+          background-color: rgba(245, 103, 115, 0.8)
+        &:nth-child(5)
+          animation-delay: 0s
+          -webkit-animation-delay: -1s
+          background-color: rgba(230, 162, 60, 0.7)
+  @keyframes loading
+    from
+      transform: scale(0, 0)
+    to
+      transform: scale(1, 1)
+</style>
 

@@ -25,9 +25,9 @@ class MyScroll{
   * */
   getVisibleHeight (element) {
     if(element){
-      return element.offsetHeight
+      return element.clientHeight
     } else {
-      return document.documentElement.offsetHeight
+      return document.documentElement.clientHeight
     }
   }
 
@@ -36,7 +36,7 @@ class MyScroll{
   * @param element
   * @return {number}
   * */
-  getScrollHeight () {
+  getScrollHeight (element) {
     if(element) {
       return element.scrollHeight
     }else {

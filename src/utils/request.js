@@ -21,36 +21,34 @@ service.interceptors.request.use(config => {
 service.interceptors.response.use(
   response => {
     const res = response.data
-    if(res.code !==20000){
-        Message({
-          message: res.message,
-          type:'error',
-          duration: 5 *1000
+    if(res.code !==20000) {
+      Message({
+        message: res.message,
+        type: 'error',
+        duration: 5 * 1000
+      })
+      if (res.code === 50008 || res.code === 50012) {
+        MessageBox.confirm('你已经被登出，请重新登录', '确定登出', {
+          confirmButtonText: '重新登录',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          location.reload()
         })
-    }
-    else {
+      }
+      return Promise.reject('error')
+    }else{
       return response.data
     }
-
-    if(res.code === 50008 || res.code ===50012){
-      MessageBox.confirm('你已经被登出，请重新登录','确定登出',{
-        confirmButtonText: '重新登录',
-        cancelButtonText: '取消',
-        type: 'warning'
-      }).then(()=>{
-        location.reload()
-      })
-    }
-    return Promise.reject('error')
   },
   error => {
-  console.log('err' + error)// for debug
-  Message({
-    message: error.message,
-    type: 'error',
-    duration: 5 * 1000
-  })
-  return Promise.reject(error)
-}
+    console.log('err' + error)// for debug
+    Message({
+      message: error.message,
+      type: 'error',
+      duration: 5 * 1000
+    })
+    return Promise.reject(error)
+  }
 )
 export default service
