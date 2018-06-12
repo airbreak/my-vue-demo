@@ -3,9 +3,9 @@
  */
 import request from '@/utils/request'
 
-export function getNewsByPage(page) {
+export function getNewsByPage (page) {
   return request({
-    url: 'v1/news/'+page+'/10',
+    url: 'v1/news/' + page + '/10',
     method: 'get'
   })
 }

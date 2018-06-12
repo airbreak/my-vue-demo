@@ -2,7 +2,7 @@
 <template>
   <div class="wrapper-box" v-loading="listLoading">
     <div id="news-box">
-        <div v-for="item in list">
+        <div v-for="item in list" :key="item.id">
           <p>{{item.title}}</p>
         </div>
       <div class="loader"  :class="{active:loadingMoreFlag}">

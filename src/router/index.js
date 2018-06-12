@@ -7,6 +7,7 @@ import testform from '@/pages/testform.vue'
 import mockjs from '@/pages/mockjs.vue'
 import upload from '@/pages/upload.vue'
 import loadmore from '@/pages/loadMoreAndPush.vue'
+import goods from '@/pages/goods.vue'
 
 Vue.use(Router)
 export default new Router({
@@ -45,6 +46,11 @@ export default new Router({
       path: '/loadmore',
       name: 'loadmore',
       component: loadmore
+    },
+    {
+      path: '/goods',
+      name: 'goods',
+      component: goods
     }
   ]
 })

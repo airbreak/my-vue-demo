@@ -25,6 +25,7 @@
           { name: 'mockjs试用',url: 'mockjs'},
           { name: '上传图片',url: 'upload'},
           { name: '加载更多',url: 'loadmore'},
+          { name: '购物',url: 'goods'},
         ]
       }
     }
