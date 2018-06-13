@@ -6,10 +6,11 @@ import router from './router'
 import BaiduMap from 'vue-baidu-map'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+import store from './store/index'
 
 Vue.config.productionTip = false
 
-Vue.use(BaiduMap,{
+Vue.use(BaiduMap, {
   ak: 'kbIUCIpdrQ7eikx2n9a4cU33'
 })
 
@@ -19,6 +20,7 @@ Vue.use(ElementUI)
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })

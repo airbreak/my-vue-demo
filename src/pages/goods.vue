@@ -7,7 +7,7 @@
       <el-table-column label="名称" prop="name"></el-table-column>
       <el-table-column label="操作">
         <template slot-scope="scope">
-          <el-button @click="addToCart(scope.row)">加入购物车</el-button>
+          <el-button @click="addToCart(scope.row)">加入</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -15,12 +15,18 @@
 </template>
 
 <script>
-import { getGoodsList } from "../api/goods";
+import { getGoodsList } from '../api/goods'
+import { mapGetters, mapMutations, mapActions } from 'vuex'
 export default {
   data() {
     return {
       list: []
     }
+  },
+  computed: {
+    ...mapGetters([
+      goods
+    ]),
   },
   mounted() {
     this.$nextTick(() => {
@@ -30,9 +36,12 @@ export default {
     })
   },
   methods:{
-    addToCart (row) {
-
-    }
+    ...mapMutations({
+      goods
+    }),
+    ...mapActions([
+      goodsAsync
+    ])
   }
 }
 </script>
