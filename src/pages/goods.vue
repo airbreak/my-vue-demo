@@ -23,9 +23,10 @@ export default {
       list: []
     }
   },
+
   computed: {
     ...mapGetters([
-      goods
+      'goods'
     ]),
   },
   mounted() {
@@ -37,11 +38,20 @@ export default {
   },
   methods:{
     ...mapMutations({
-      goods
+      setGoods: 'SET_GOODS',
+      addGoods: 'ADD_GOODS'
     }),
     ...mapActions([
-      goodsAsync
-    ])
+      'goodsAsync'
+    ]),
+    addToCart (row) {
+      row.count = 1
+      this.addGoods(row)
+      this.$message({
+        message: '成功添加到购物车！',
+        type: 'success'
+      });
+    }
   }
 }
 </script>

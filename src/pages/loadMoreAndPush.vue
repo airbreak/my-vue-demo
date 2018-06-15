@@ -17,7 +17,7 @@
 <script>
   import {getNewsByPage} from '../api/news'
   import {MyScroll} from '../utils/myScroll'
-  import { Utils } from '../utils/utils'
+  import Utils from '../utils/utils'
   const myScroll = new MyScroll()
   const  utils = new Utils()
   export default {

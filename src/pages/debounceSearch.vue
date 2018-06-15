@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import { Utils } from '../utils/utils'
+import Utils from '../utils/utils'
 const  utils = new Utils()
 export default {
   name: "debounce-search",

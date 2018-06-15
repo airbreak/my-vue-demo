@@ -112,4 +112,4 @@ class Utils {
     window.localStorage.removeItem(name)
   }
 }
-export { Utils }
+export default Utils
