@@ -39,14 +39,16 @@ export default {
   methods:{
     ...mapMutations({
       setGoods: 'SET_GOODS',
-      addGoods: 'ADD_GOODS'
+      addGoods: 'ADD_GOODS',
+      addGoods1: 'ADD_GOODS1'
     }),
     ...mapActions([
       'goodsAsync'
     ]),
     addToCart (row) {
       row.count = 1
-      this.addGoods(row)
+      this.addGoods({id:row.id, count:row.count})
+      this.addGoods1(row)
       this.$message({
         message: '成功添加到购物车！',
         type: 'success'

@@ -1,29 +1,41 @@
 import * as types from './mutation-types'
-import util from '../utils/utils'
-const myUtil =  new util()
+import Util from '../utils/utils'
+const myUtil = new Util()
 export default {
   [types.SET_GOODS] (state) {
     let goods = myUtil.getStore('goods')
     if (!goods) {
-      goods = '[]'
+      goods = '{}'
     }
     state.goods = JSON.parse(goods)
   },
-  [types.ADD_GOODS] (state, newGoods) {
-    // let goods = myUtil.getStore('goods')
+  [types.ADD_GOODS] (state, {
+    id,
+    count
+  }) {
     let goods = state.goods
-    let isInCart = false
-    for (let i = 0; i < goods.length; i++) {
-      if (state.goods[i].id === newGoods.id) {
-        state.goods[i].count += newGoods.count
-        isInCart = true
+    if (goods[id]) {
+      goods[id]['count'] += count
+    } else {
+      goods[id] = {
+        id: id,
+        count: count
       }
     }
-    if (!isInCart) {
-      goods.push(newGoods)
-    }
-    myUtil.setStore('goods', goods) // 本地缓存
+    state.goods = {...goods}
+    myUtil.setStore('goods', state.goods) // 本地缓存
   },
+  [types.ADD_GOODS1] (state, good) {
+    let goods = state.goods1
+    if (goods[good.id]) {
+      goods[good.id]['count'] += good.count
+    } else {
+      goods[good.id] = good
+    }
+    state.goods1 = { ...goods }
+    myUtil.setStore('goods1', state.goods1) // 本地缓存
+  },
+
   [types.CUT_GOODS] (state, newGoods) {
     let goods = state.goods
     let isInCart = false
@@ -42,5 +54,9 @@ export default {
       return
     }
     myUtil.setStore('goods', goods) // 本地缓存
+  },
+  [types.ADD_COUNTS] (state, count) {
+    state.counts += count
+    console.log('counts:' + state.counts)
   }
 }

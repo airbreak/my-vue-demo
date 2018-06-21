@@ -1,4 +1,5 @@
 const state = {
-  goods: []
+  goods: {},
+  goods1: {}
 }
 export default state
