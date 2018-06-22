@@ -12,7 +12,7 @@ const service = axios.create({
 service.interceptors.request.use(config => {
   config.headers['X-Token'] = 'sfwcv89sfeafadf'
   return config
-},error => {
+}, error => {
   console.log(error)
   Promise.reject(error)
 })
@@ -21,7 +21,7 @@ service.interceptors.request.use(config => {
 service.interceptors.response.use(
   response => {
     const res = response.data
-    if(res.code !==20000) {
+    if (res.code !== 20000) {
       Message({
         message: res.message,
         type: 'error',
@@ -36,8 +36,8 @@ service.interceptors.response.use(
           location.reload()
         })
       }
-      return Promise.reject('error')
-    }else{
+      return Promise.reject ('error')
+    } else {
       return response.data
     }
   },

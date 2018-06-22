@@ -11,11 +11,14 @@
         </template>
       </el-table-column>
     </el-table>
+    <div>
+      <el-button @click="showCart">前往查看</el-button>
+    </div>
   </div>
 </template>
 
 <script>
-import { getGoodsList } from '../api/goods'
+import { getGoodsList } from '../../api/goods'
 import { mapGetters, mapMutations, mapActions } from 'vuex'
 export default {
   data() {
@@ -34,25 +37,27 @@ export default {
       getGoodsList().then((res) => {
         this.list = res.data
       })
+      this.getLocalGoods()
     })
   },
   methods:{
     ...mapMutations({
-      setGoods: 'SET_GOODS',
-      addGoods: 'ADD_GOODS',
-      addGoods1: 'ADD_GOODS1'
+      getLocalGoods: 'GET_GOODS',
+      addGoods: 'ADD_GOODS'
     }),
     ...mapActions([
       'goodsAsync'
     ]),
     addToCart (row) {
       row.count = 1
-      this.addGoods({id:row.id, count:row.count})
-      this.addGoods1(row)
+      this.addGoods(row)
       this.$message({
         message: '成功添加到购物车！',
         type: 'success'
       });
+    },
+    showCart () {
+      this.$router.push('cart')
     }
   }
 }
