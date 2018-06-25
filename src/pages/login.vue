@@ -1,15 +1,15 @@
 <template>
   <div v-loading="listLoading">
-    <el-form :model="ruleForm2"
+    <el-form :model="formData"
       status-icon
       :rules="rules2"
       ref="ruleForm2"
       label-width="100px" class="demo-ruleForm">
       <el-form-item label="用户名" prop="account">
-        <el-input v-model="ruleForm2.account" auto-complete="false">
+        <el-input v-model="formData.account" auto-complete="false"></el-input>
       </el-form-item>
        <el-form-item label="密码" prop="pass">
-        <el-input v-model="ruleForm2.pass" auto-complete="false">
+        <el-input v-model="formData.pass" auto-complete="false"></el-input>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="login('ruleForm2')">登录</el-button>
@@ -23,13 +23,12 @@
 </template>
 
 <script>
-import { getGoodsList } from '../../api/goods'
-import { mapGetters, mapMutations, mapActions } from 'vuex'
+import { login } from '../api/login'
 export default {
   data() {
     return {
       listLoading: true,
-      ruleForm2: {
+      formData: {
         account: '',
         pass: ''
       },
@@ -50,8 +49,20 @@ export default {
 
   },
   methods: {
-    login (info) {
+    login (formName) {
+      this.$refs[formName].vlidate((valid)=>{
+        if(valid) {
+          login(formData).then(()=>{
 
+          })
+        } else {
+          console.log('error submit')
+          return false
+        }
+      })
+    },
+    resetForm (formName) {
+      this.$refs[formName].resetFields()
     }
   }
 }

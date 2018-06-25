@@ -24,10 +24,13 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 body{
   padding: 0;
   margin: 0;
+  a {
+    color: red;
+  }
 }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
