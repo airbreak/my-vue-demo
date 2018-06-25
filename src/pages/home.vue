@@ -25,7 +25,8 @@
           { name: 'mockjs试用',url: 'mockjs'},
           { name: '上传图片',url: 'upload'},
           { name: '加载更多',url: 'loadmore'},
-          { name: '购物',url: 'goods'},
+          { name: '购物(非模块化的vuex)',url: 'goods'},
+          { name: '用户信息(模块化的vuex)',url: 'userInfo'},
         ]
       }
     }

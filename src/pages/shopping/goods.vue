@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-loading="listLoading">
     <el-table
     :data="list"
     style="width:100%">
@@ -23,6 +23,7 @@ import { mapGetters, mapMutations, mapActions } from 'vuex'
 export default {
   data() {
     return {
+      listLoading: true,
       list: []
     }
   },
@@ -35,6 +36,7 @@ export default {
   mounted() {
     this.$nextTick(() => {
       getGoodsList().then((res) => {
+        this.listLoading = false
         this.list = res.data
       })
       this.getLocalGoods()

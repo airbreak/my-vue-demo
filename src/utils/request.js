@@ -21,7 +21,10 @@ service.interceptors.request.use(config => {
 service.interceptors.response.use(
   response => {
     const res = response.data
-    if (res.code !== 20000) {
+    console.log(res.code)
+    if (res.code === 20000) {
+      return response.data
+    } else {
       Message({
         message: res.message,
         type: 'error',
@@ -36,9 +39,10 @@ service.interceptors.response.use(
           location.reload()
         })
       }
-      return Promise.reject ('error')
-    } else {
-      return response.data
+      if (res.code === 50000) {
+        MessageBox.alert('数据加载失败')
+      }
+      return null
     }
   },
   error => {
