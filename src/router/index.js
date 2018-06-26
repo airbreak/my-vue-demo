@@ -11,6 +11,7 @@ import Loadmore from '@/pages/loadMoreAndPush.vue'
 import Goods from '@/pages/shopping/list.vue'
 import Cart from '@/pages/shopping/cart.vue'
 import Login from '@/pages/login.vue'
+import NavMenuDemo from '@/pages/navMenuDemo.vue'
 
 Vue.use(Router)
 export const constantRouterMap = [
@@ -53,6 +54,11 @@ export const constantRouterMap = [
     path: '/loadmore',
     name: 'loadmore',
     component: Loadmore
+  },
+  {
+    path: '/menu',
+    name: 'menu',
+    component: NavMenuDemo
   },
   {
     path: '/shopping',

@@ -18,7 +18,8 @@
 </template>
 
 <script>
-import { getGoodsList } from '../../api/goods'
+import axios from 'axios'
+import { getGoodsList, getQuestionsList } from '../../api/goods'
 import { mapGetters, mapMutations, mapActions } from 'vuex'
 export default {
   data() {
@@ -35,10 +36,11 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
-      getGoodsList().then((res) => {
-        this.listLoading = false
-        this.list = res.data
-      })
+      axios.all([getGoodsList(), getQuestionsList()])
+        .then((res) => {
+          this.listLoading = false
+          this.list = res[0].data
+        })
       this.getLocalGoods()
     })
   },

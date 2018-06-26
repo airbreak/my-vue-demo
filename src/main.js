@@ -6,9 +6,8 @@ import router from './router'
 import BaiduMap from 'vue-baidu-map'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+import '@/styles/index.scss'
 import store from './store/index'
-
-// import '@/styles/index.scss'
 
 Vue.config.productionTip = false
 

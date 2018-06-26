@@ -1,51 +1,61 @@
 <template>
- <el-menu
- mode="vertical"
- :show-timeout="200"
- :default-active="$route.path"
- :collapse="isColllapse"
- background-color="#304156"
- text-color="#bfcbd9"
- active-text-color="#409eff"
- class="el-menu-vertical-demo"
- @open="handeOpen"
- @close="handeClose"
- >
-  <el-submenu index="1">
-    <i class="el-icon-menu"></i>
-    <span slot="title">Navigation 1</span>
-  </el-submenu>
-  <el-submenu index="2">
-    <template slot="title">
-      <i class="el-icon-location"></i>
-      <span slot="title">Navigation 2></span>
-    </template>
-  </el-submenu>
-  <el-menu-item-group>
-    <span slot="title">Group</span>
-    <el-menu-item index="1-1">item 1-1</el-menu-item>
-    <el-menu-item index="1-2">item 1-2</el-menu-item>
-  </el-menu-item-group>
- </el-menu>
+  <el-scrollbar wrapCalss="scrollbar-wrap">
+    <el-menu
+        mode="vertical"
+        :show-timeout="200"
+        :default-active="$route.path"
+        :collapse="isCollapse"
+        background-color="#304156"
+        text-color="#bfcbd9"
+        active-text-color="#409eff"
+        class="el-menu-vertical-demo">
+      <!-- <el-menu-item index="1">
+        <template slot="title">
+          <i class="el-icon-menu"></i>
+          <span slot="title">Navigation 1</span>
+        </template>
+      </el-menu-item>
+      <el-menu-item index="2">
+        <template slot="title">
+          <i class="el-icon-location"></i>
+          <span slot="title">Navigation 2</span>
+        </template>
+      </el-menu-item>
+      <el-submenu>
+        <template slot="title">
+          <i class="el-icon-location"></i>
+          <span slot="title">Navigation 2</span>
+        </template>
+        <el-menu-item index="1-1">item 1-1</el-menu-item>
+        <el-menu-item index="1-2">item 1-2</el-menu-item>
+      </el-submenu> -->
+      <sidebar-item :routes="routes"></sidebar-item>
+    </el-menu>
+  </el-scrollbar>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+import { SidebarItem } from './SidebarItem'
 export default {
-  data() {
-    return {
-      isCollapse: false
+  components: { SidebarItem },
+  computed: {
+    ...mapGetters([
+      'sidebar'
+    ]),
+    routes() {
+      return this.$router.options.routes
+    },
+    isCollapse() {
+      return !this.sidebar.opened
     }
   },
-  methods: {
-    handOpen(key,keyPath) {
-      console.log(key,keyPath)
-    },
-    handleClose(key,keyPath) {
-      console.log(key,keyPath)
-    }
-  }
 }
 </script>
 
 <style scoped>
+  .el-menu-vertical-demo:not(.el-menu--collapse) {
+    width: 200px;
+    min-height: 400px;
+  }
 </style>

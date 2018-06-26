@@ -27,6 +27,7 @@
           { name: '加载更多',url: 'loadmore'},
           { name: '购物(非模块化的vuex)',url: 'shopping'},
           { name: '用户信息(模块化的vuex)',url: 'login'},
+          { name: '菜单',url: 'menu'},
         ]
       }
     }
