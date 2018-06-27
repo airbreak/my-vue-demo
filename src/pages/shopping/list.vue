@@ -41,12 +41,12 @@ export default {
           this.listLoading = false
           this.list = res[0].data
         })
-      this.getLocalGoods()
+      // this.getLocalGoods()
     })
   },
   methods:{
     ...mapMutations({
-      getLocalGoods: 'GET_GOODS',
+      // getLocalGoods: 'GET_GOODS',
       addGoods: 'ADD_GOODS'
     }),
     ...mapActions([

@@ -1,84 +1,86 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '@/pages/home'
 import Layout from '@/pages/layout/Layout.vue'
-import Computed from '@/pages/computed.vue'
-import DebounceSearch from '@/pages/debounceSearch.vue'
-import Testform from '@/pages/testform.vue'
-import Mockjs from '@/pages/mockjs.vue'
-import Upload from '@/pages/upload.vue'
-import Loadmore from '@/pages/loadMoreAndPush.vue'
-import Goods from '@/pages/shopping/list.vue'
-import Cart from '@/pages/shopping/cart.vue'
-import Login from '@/pages/login.vue'
-import NavMenuDemo from '@/pages/navMenuDemo.vue'
 
 Vue.use(Router)
 export const constantRouterMap = [
-  {
-    path: '/login',
-    name: 'login',
-    component: Login
-  },
+  { path: '/login', name: 'login', component: () => import('@/pages/login'), hidden: false },
+  { path: '/404', name: 'login', component: () => import('@/pages/404'), hidden: true },
   {
     path: '/',
-    name: 'home',
-    component: Home
+    name: 'default',
+    component: Layout,
+    redirect: 'shopping'
   },
   {
     path: '/computed',
     name: 'computed',
-    component: Computed
+    component: Layout,
+    redirect: '/computed/index',
+    meta: { title: 'computed', icon: 'music-list' },
+    children: [
+      {
+        path: 'index',
+        name: 'computed-index',
+        meta: { title: 'List', icon: 'music-list' },
+        component: () => import('@/pages/computed')
+      }
+    ]
   },
   {
     path: '/debounceSearch',
     name: 'debounceSearch',
-    component: DebounceSearch
+    component: () => import('@/pages/debounceSearch')
   },
   {
     path: '/testform',
     name: 'testform',
-    component: Testform
+    component: () => import('@/pages/testform')
   },
   {
     path: '/mockjs',
     name: 'mockjs',
-    component: Mockjs
+    component: () => import('@/pages/mockjs')
   },
   {
     path: '/upload',
     name: 'upload',
-    component: Upload
+    component: () => import('@/pages/upload')
   },
   {
     path: '/loadmore',
     name: 'loadmore',
-    component: Loadmore
+    component: () => import('@/pages/loadMoreAndPush')
   },
   {
     path: '/menu',
     name: 'menu',
-    component: NavMenuDemo
+    component: () => import('@/pages/navMenuDemo')
   },
   {
     path: '/shopping',
     name: 'shopping',
     redirect: '/shopping/list',
     component: Layout,
+    meta: { title: 'Vuex-shopping', icon: 'shopping' },
     children: [
       {
         path: 'list',
-        component: Goods
+        name: 'shopping-list',
+        component: () => import('@/pages/shopping/list'),
+        meta: { title: 'List', icon: 'goods-list' }
       },
       {
         path: 'cart',
-        component: Cart
+        name: 'shopping-cart',
+        component: () => import('@/pages/shopping/cart'),
+        meta: { title: 'Cart', icon: 'goods-cart' }
       }
     ]
   }
 ]
 
 export default new Router({
-  scrollBehavior: () => ({y: 0}),
+  scrollBehavior: () => ({ y: 0 }),
   routes: constantRouterMap
 })
