@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { login } from '../api/login'
+import { doLogin } from '../api/login'
 export default {
   data() {
     return {
@@ -52,7 +52,7 @@ export default {
     login (formName) {
       this.$refs[formName].vlidate((valid)=>{
         if(valid) {
-          login(formData).then(()=>{
+          doLogin(formData).then(()=>{
 
           })
         } else {

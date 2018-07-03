@@ -1,5 +1,12 @@
 import Cookies from 'js-cookie'
 
+// const state = {
+//   sidebar: state => state.app.sidebar,
+// }
+
+// const getters = {
+//   allProducts: state => state.all
+// }
 const app = {
   state: {
     sidebar: {

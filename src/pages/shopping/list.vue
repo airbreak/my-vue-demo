@@ -1,7 +1,7 @@
 <template>
   <div v-loading="listLoading">
     <el-table
-    :data="list"
+    :data="allProducts"
     style="width:100%">
       <el-table-column type="index" width="50"></el-table-column>
       <el-table-column label="名称" prop="name"></el-table-column>
@@ -20,41 +20,33 @@
 <script>
 import axios from 'axios'
 import { getGoodsList, getQuestionsList } from '../../api/goods'
-import { mapGetters, mapMutations, mapActions } from 'vuex'
+import { mapActions } from 'vuex'
 export default {
   data() {
     return {
-      listLoading: true,
-      list: []
+      listLoading: true
     }
   },
 
   computed: {
-    ...mapGetters([
-      'goods'
-    ]),
+    allProducts() {
+      console.log(this.$store.state.products.all)
+      this.listLoading = false
+      return this.$store.state.products.all
+    }
   },
+
   mounted() {
     this.$nextTick(() => {
-      axios.all([getGoodsList(), getQuestionsList()])
-        .then((res) => {
-          this.listLoading = false
-          this.list = res[0].data
-        })
-      // this.getLocalGoods()
+      this.$store.dispatch('getAllProducts')
     })
   },
   methods:{
-    ...mapMutations({
-      // getLocalGoods: 'GET_GOODS',
-      addGoods: 'ADD_GOODS'
-    }),
     ...mapActions([
-      'goodsAsync'
+      'addProductToCart'
     ]),
     addToCart (row) {
-      row.count = 1
-      this.addGoods(row)
+      this.addToCart(row)
       this.$message({
         message: '成功添加到购物车！',
         type: 'success'

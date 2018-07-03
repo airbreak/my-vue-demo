@@ -89,6 +89,9 @@
       background-color: $menuHover !important;
     }
   }
+  .el-submenu__title, .el-menu-item{
+    text-align: left;
+  }
   .el-menu--collapse .el-menu .el-submenu {
     min-width: 180px !important;
   }

@@ -1,5 +1,5 @@
 <template>
-  <el-scrollbar wrapCalss="scrollbar-wrap">
+  <el-scrollbar wrapClass="scrollbar-wrapper">
     <el-menu
         mode="vertical"
         :show-timeout="200"

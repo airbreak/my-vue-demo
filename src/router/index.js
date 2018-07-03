@@ -16,13 +16,11 @@ export const constantRouterMap = [
     path: '/computed',
     name: 'computed',
     component: Layout,
-    redirect: '/computed/index',
-    meta: { title: 'computed', icon: 'music-list' },
     children: [
       {
         path: 'index',
-        name: 'computed-index',
-        meta: { title: 'List', icon: 'music-list' },
+        name: 'computed',
+        meta: { title: 'computed', icon: 'computer' },
         component: () => import('@/pages/computed')
       }
     ]
@@ -62,7 +60,7 @@ export const constantRouterMap = [
     name: 'shopping',
     redirect: '/shopping/list',
     component: Layout,
-    meta: { title: 'Vuex-shopping', icon: 'shopping' },
+    meta: { title: 'Vuex', icon: 'shopping-bag' },
     children: [
       {
         path: 'list',
@@ -74,7 +72,7 @@ export const constantRouterMap = [
         path: 'cart',
         name: 'shopping-cart',
         component: () => import('@/pages/shopping/cart'),
-        meta: { title: 'Cart', icon: 'goods-cart' }
+        meta: { title: 'Cart', icon: 'cart' }
       }
     ]
   }

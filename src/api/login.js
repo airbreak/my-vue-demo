@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-export function getGoodsList (info) {
+export function doLogin (info) {
   return request({
     url: '/v1/login',
     type: 'post',

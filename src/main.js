@@ -7,7 +7,8 @@ import BaiduMap from 'vue-baidu-map'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import '@/styles/index.scss'
-import store from './store/index'
+import store from './store'
+import '@/icons'
 
 Vue.config.productionTip = false
 
