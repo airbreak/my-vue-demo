@@ -5,9 +5,10 @@
     style="width:100%">
       <el-table-column type="index" width="50"></el-table-column>
       <el-table-column label="名称" prop="name"></el-table-column>
+      <el-table-column label="存货" prop="inventory"></el-table-column>
       <el-table-column label="操作">
         <template slot-scope="scope">
-          <el-button @click="addToCart(scope.row)">加入</el-button>
+          <el-button :disabled="scope.row.inventory<=0" @click="addToCart(scope.row)">加入</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -36,6 +37,7 @@ export default {
   mounted() {
     this.$nextTick(() => {
       this.$store.dispatch('getAllProducts')
+      this.$store.dispatch('getAllCartProducts')
     })
   },
   methods:{
@@ -43,7 +45,7 @@ export default {
       'addProductToCart'
     ]),
     addToCart (row) {
-      this.addToCart(row)
+      this.addProductToCart(row)
       this.$message({
         message: '成功添加到购物车！',
         type: 'success'

@@ -1,3 +1,5 @@
+import Util from '../../utils/utils'
+const myUtil = new Util()
 const state = {
   added: [],
   checkoutStatus: null
@@ -45,6 +47,14 @@ const actions = {
       }
       commit('decrementProductInventory', {id: product.id})
     }
+  },
+  getAllCartProducts ({commit}) {
+    let str = myUtil.getStore('shopping-cart')
+    if (!str) {
+      str = '[]'
+    }
+    let items = JSON.parse(str)
+    commit('setCartItems', { items: items })
   }
 }
 
@@ -54,11 +64,13 @@ const mutations = {
       id,
       quantity: 1
     })
+    myUtil.setStore('shopping-cart', state.added)
   },
 
   incrementItemQuantity (state, { id }) {
     const cartItem = state.added.find(item => item.id === id)
     cartItem.quantity++
+    myUtil.setStore('shopping-cart', state.added)
   },
 
   setCartItems (state, {items}) {

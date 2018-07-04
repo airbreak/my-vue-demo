@@ -19,8 +19,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations, mapActions, mapState } from 'vuex'
-import { getGoodsList } from '../../api/goods';
+import { mapGetters, mapMutations} from 'vuex'
 export default {
   data() {
     return {

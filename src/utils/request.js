@@ -10,7 +10,7 @@ const service = axios.create({
 //
 // request 拦截器
 service.interceptors.request.use(config => {
-  config.headers['X-Token'] = 'sfwcv89sfeafadf'
+  // config.headers['X-Token'] = 'sfwcv89sfeafadf'
   return config
 }, error => {
   console.log(error)
