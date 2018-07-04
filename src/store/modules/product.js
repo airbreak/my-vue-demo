@@ -1,17 +1,19 @@
 import { getGoodsList } from '../../api/goods'
 
 const state = {
-  all: []
+  all: [],
+  isLoading: true
 }
 
 const getters = {
-  allProducts: state => state.all
+  allProducts: state => state.all,
+  isLoading: state => state.isLoading
 }
 
 const actions = {
   getAllProducts ({commit}) {
-    getGoodsList(products => {
-      commit('setProducts', products)
+    getGoodsList().then((products) => {
+      commit('setProducts', products.data)
     })
   }
 }
@@ -19,6 +21,7 @@ const actions = {
 const mutations = {
   setProducts (state, products) {
     state.all = products
+    state.isLoading = false
   },
 
   decremetentProductInventory (state, { id }) {

@@ -1,11 +1,11 @@
 import Cookies from 'js-cookie'
 
 // const state = {
-//   sidebar: state => state.app.sidebar,
+//   sidebar: null
 // }
 
 // const getters = {
-//   allProducts: state => state.all
+//   sidebar: state => state.sidebar
 // }
 const app = {
   state: {
@@ -14,6 +14,9 @@ const app = {
       withoutAnimation: false
     },
     device: 'desktop'
+  },
+  getters: {
+    sidebar: state => state.sidebar
   },
   mutations: {
     TOGGLE_SIDEBART: state => {

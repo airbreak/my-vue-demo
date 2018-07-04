@@ -1,5 +1,5 @@
 <template>
-  <div v-loading="listLoading">
+  <div v-loading="isLoading">
     <el-table
     :data="allProducts"
     style="width:100%">
@@ -18,22 +18,19 @@
 </template>
 
 <script>
-import axios from 'axios'
-import { getGoodsList, getQuestionsList } from '../../api/goods'
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 export default {
   data() {
     return {
-      listLoading: true
+
     }
   },
 
-  computed: {
-    allProducts() {
-      console.log(this.$store.state.products.all)
-      this.listLoading = false
-      return this.$store.state.products.all
-    }
+  computed:{
+    ...mapGetters({
+      allProducts: 'allProducts',
+      isLoading: 'isLoading'
+    })
   },
 
   mounted() {
