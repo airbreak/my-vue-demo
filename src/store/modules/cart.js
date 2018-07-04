@@ -6,6 +6,7 @@ const state = {
 }
 
 const getters = {
+  added: state => state.added,
   checkoutStatus: state => state.checkoutStatus,
 
   cartProducts: (state, getters, rootState) => {

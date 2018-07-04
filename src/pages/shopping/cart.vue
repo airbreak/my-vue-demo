@@ -4,11 +4,11 @@
     :data="goods"
     style="width:100%">
       <el-table-column type="index" width="50"></el-table-column>
-      <el-table-column label="名称" prop="name"></el-table-column>
+      <el-table-column label="名称" prop="title"></el-table-column>
       <el-table-column label="操作">
         <template slot-scope="scope">
           <el-button @click="add(scope.row)">+</el-button>
-          <el-input v-model="scope.row.count"></el-input>
+          <el-input v-model="scope.row.quantity"></el-input>
           <el-button @click="reduce(scope.row)">-</el-button>
         </template>
       </el-table-column>
@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations} from 'vuex'
+import { mapGetters, mapActions} from 'vuex'
 export default {
   data() {
     return {
@@ -28,30 +28,26 @@ export default {
     }
   },
   computed:{
-    ...mapState([
-      'goods'
-    ]),
+    ...mapGetters({
+      goods:'cartProducts',
+      checkoutStatus: 'checkoutStatus',
+      total: 'cartTotalPrice'
+    }),
   },
-  watch:{
-    goods: {
-      handler: function (params) {
-        this.calcTotalDataInfo();
-      },
-      deep:true
-    }
-  },
+  // watch:{
+  //   goods: {
+  //     handler: function (params) {
+  //       this.calcTotalDataInfo();
+  //     },
+  //     deep:true
+  //   }
+  // },
   mounted() {
     this.$nextTick(() => {
-      this.getGoods()
-      this.calcTotalDataInfo()
+      this.$store.dispatch('getAllCartProducts')
     })
   },
   methods: {
-    ...mapMutations({
-      getGoods: 'GET_GOODS',
-      addGoods:'ADD_GOODS',
-      reduceGoods:'REDUCE_GOODS',
-    }),
     add (row) {
       let good = {...row}
       good.count = 1
