@@ -1,5 +1,4 @@
 import Util from '../../utils/utils'
-import { stat } from 'fs';
 const myUtil = new Util()
 const state = {
   added: [],
@@ -62,6 +61,12 @@ const actions = {
     }
     let items = JSON.parse(str)
     commit('setCartItems', { items: items })
+  },
+  deleteProductFromCart ({ state, commit }, id) {
+    const index = state.added.findIndex(item => item.id === id)
+    if (index >= 0) {
+      commit('deleteProductFromCart', index)
+    }
   }
 }
 
@@ -85,6 +90,11 @@ const mutations = {
   decreaseProductFromCart (state, { id }) {
     const cartItem = state.added.find(item => item.id === id)
     cartItem.quantity--
+    myUtil.setStore('shopping-cart', state.added)
+  },
+
+  deleteProductFromCart (state, index) {
+    state.added.splice(index, 1)
     myUtil.setStore('shopping-cart', state.added)
   },
 

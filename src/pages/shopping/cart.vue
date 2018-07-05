@@ -11,6 +11,7 @@
             <el-button @click="add(scope.row)">+</el-button>
             <el-input v-model="scope.row.quantity" class="quantity-input"></el-input>
             <el-button :disabled="scope.row.quantity<=1" @click="decrease(scope.row)">-</el-button>
+            <el-button icon="el-icon-delete" title="移除" @click="deleteItem(scope.row)"></el-button>
           </div>
         </template>
       </el-table-column>
@@ -37,13 +38,16 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
-      this.$store.dispatch('getAllCartProducts')
+      // this.$store.dispatch('getAllCartProducts')  // 等同于 将 getAllCartProducts ...mapActions到当前的环境中
+      this.getAllCartProducts()
     })
   },
   methods: {
     ...mapActions([
+      'getAllCartProducts',
       'addProductToCart',
-      'decreaseProductFromCart'
+      'decreaseProductFromCart',
+      'deleteProductFromCart'
     ]),
     add (row) {
       this.addProductToCart({product:row, isCheckInventory:false});
@@ -51,18 +55,14 @@ export default {
     decrease (row) {
       this.decreaseProductFromCart(row);
     },
-    calcTotalDataInfo () {
-      this.totalCounts = 0
-      this.totalAccount = 0
-      let len = this.goods.length;
-      for(let i = 0; i < len; i++){
-        if(this.goods[i].status){
-          let tempCounts =   Number(this.goods[i].count)
-          this.totalCounts +=tempCounts
-          this.totalAccount += tempCounts * this.goods[i].price
-        }
-      }
-      this.totalAccount = this.totalAccount.toFixed(2);
+    deleteItem (row) {
+      this.$confirm('是否移除购物车', '确定移除', {
+        confirmButtonText: '确定',
+        cancleButtonText: '取消',
+        type: 'warning'
+      }).then(()=>{
+        this.deleteProductFromCart(row.id);
+      })
     }
   }
 }
