@@ -1,4 +1,5 @@
 import Util from '../../utils/utils'
+import { stat } from 'fs';
 const myUtil = new Util()
 const state = {
   added: [],
@@ -6,24 +7,14 @@ const state = {
 }
 
 const getters = {
-  added: state => state.added,
   checkoutStatus: state => state.checkoutStatus,
 
-  cartProducts: (state, getters, rootState) => {
-    return state.added.map(({id, quantity}) => {
-      const produt = rootState.produts.all.find(produt => produt.id === id)
-      return {
-        title: produt.title,
-        price: produt.price,
-        quantity
-      }
-    })
-  },
+  cartProducts: state => state.added,
 
-  cartTotalPrice: (state, getters) => {
-    return getters.cartProducts.reduce((total, produt) => {
+  cartTotalPrice: (state) => {
+    return state.added.reduce((total, produt) => {
       return total + produt.price * produt.quantity
-    })
+    }, 0)
   }
 }
 
@@ -37,18 +28,33 @@ const actions = {
     // shop.buyProducts()
   },
 
-  addProductToCart ({state, commit}, product) {
+  addProductToCart ({state, commit}, {product, isCheckInventory = true}) {
     commit('setCheckoutStatus', null)
-    if (product.inventory > 0) {
+    let inventory = 0
+    if (!isCheckInventory) {
+      inventory = 1
+    } else {
+      inventory = product.inventory
+    }
+    if (inventory > 0) {
       const cartItem = state.added.find(item => item.id === product.id)
       if (!cartItem) {
-        commit('pushProductToCart', {id: product.id})
+        commit('pushProductToCart', {id: product.id, name: product.name, price: product.price})
       } else {
         commit('incrementItemQuantity', cartItem)
       }
-      commit('decrementProductInventory', {id: product.id})
+      if (isCheckInventory) {
+        commit('decrementProductInventory', { id: product.id, isCheckInventory: isCheckInventory })
+      }
     }
   },
+  decreaseProductFromCart ({ state, commit }, product) {
+    const cartItem = state.added.find(item => item.id === product.id)
+    if (cartItem.quantity > 1) {
+      commit('decreaseProductFromCart', cartItem)
+    }
+  },
+
   getAllCartProducts ({commit}) {
     let str = myUtil.getStore('shopping-cart')
     if (!str) {
@@ -60,9 +66,11 @@ const actions = {
 }
 
 const mutations = {
-  pushProductToCart (state, {id}) {
+  pushProductToCart (state, {id, name, price}) {
     state.added.push({
       id,
+      name,
+      price,
       quantity: 1
     })
     myUtil.setStore('shopping-cart', state.added)
@@ -71,6 +79,12 @@ const mutations = {
   incrementItemQuantity (state, { id }) {
     const cartItem = state.added.find(item => item.id === id)
     cartItem.quantity++
+    myUtil.setStore('shopping-cart', state.added)
+  },
+
+  decreaseProductFromCart (state, { id }) {
+    const cartItem = state.added.find(item => item.id === id)
+    cartItem.quantity--
     myUtil.setStore('shopping-cart', state.added)
   },
 

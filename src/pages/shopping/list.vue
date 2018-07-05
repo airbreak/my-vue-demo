@@ -45,7 +45,7 @@ export default {
       'addProductToCart'
     ]),
     addToCart (row) {
-      this.addProductToCart(row)
+      this.addProductToCart({product:row})
       this.$message({
         message: '成功添加到购物车！',
         type: 'success'

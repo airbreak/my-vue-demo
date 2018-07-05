@@ -4,17 +4,19 @@
     :data="goods"
     style="width:100%">
       <el-table-column type="index" width="50"></el-table-column>
-      <el-table-column label="名称" prop="title"></el-table-column>
+      <el-table-column label="名称" prop="name"></el-table-column>
       <el-table-column label="操作">
         <template slot-scope="scope">
-          <el-button @click="add(scope.row)">+</el-button>
-          <el-input v-model="scope.row.quantity"></el-input>
-          <el-button @click="reduce(scope.row)">-</el-button>
+          <div class="operation-cell">
+            <el-button @click="add(scope.row)">+</el-button>
+            <el-input v-model="scope.row.quantity" class="quantity-input"></el-input>
+            <el-button :disabled="scope.row.quantity<=1" @click="decrease(scope.row)">-</el-button>
+          </div>
         </template>
       </el-table-column>
     </el-table>
-    <div>共{{totalCounts}}件商品</div>
-    <div>总价￥{{totalAccount}}</div>
+    <div>共{{goods.length}}件商品</div>
+    <div>总价￥{{total}}</div>
   </div>
 </template>
 
@@ -23,8 +25,7 @@ import { mapGetters, mapActions} from 'vuex'
 export default {
   data() {
     return {
-      totalCounts: 0,
-      totalAccount: 0
+      totalCounts: 0
     }
   },
   computed:{
@@ -34,29 +35,21 @@ export default {
       total: 'cartTotalPrice'
     }),
   },
-  // watch:{
-  //   goods: {
-  //     handler: function (params) {
-  //       this.calcTotalDataInfo();
-  //     },
-  //     deep:true
-  //   }
-  // },
   mounted() {
     this.$nextTick(() => {
       this.$store.dispatch('getAllCartProducts')
     })
   },
   methods: {
+    ...mapActions([
+      'addProductToCart',
+      'decreaseProductFromCart'
+    ]),
     add (row) {
-      let good = {...row}
-      good.count = 1
-      this.addGoods(good);
+      this.addProductToCart({product:row, isCheckInventory:false});
     },
-    reduce (row) {
-      let good = {...row}
-      good.count = 1
-      this.reduceGoods(good);
+    decrease (row) {
+      this.decreaseProductFromCart(row);
     },
     calcTotalDataInfo () {
       this.totalCounts = 0
@@ -75,5 +68,17 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+.operation-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .quantity-input {
+    margin: 0 10px;
+    width: 80px;
+    input {
+      text-align: center !important;
+    }
+  }
+}
 </style>
