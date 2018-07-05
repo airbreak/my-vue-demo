@@ -10,3 +10,11 @@ export function doLogin (info) {
     }
   })
 }
+
+export function getInfo (token) {
+  return request({
+    url: '/v1/userinfo',
+    method: 'get',
+    params: {token}
+  })
+}

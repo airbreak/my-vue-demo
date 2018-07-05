@@ -1,7 +1,7 @@
 import vue from 'vue'
 import vuex from 'vuex'
 import app from './modules/app'
-// import shopping from './modules/shopping'
+import user from './modules/user'
 import products from './modules/product'
 import cart from './modules/cart'
 
@@ -11,6 +11,7 @@ export default new vuex.Store({
   modules: {
     products,
     cart,
-    app
+    app,
+    user
   }
 })
