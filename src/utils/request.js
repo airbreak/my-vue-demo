@@ -1,6 +1,7 @@
 /**
  * Created by jiangjianming@bmkp.cn on 2018/6/1.
  */
+import { getToken } from '@/utils/auth'
 import axios from 'axios'
 import {Message, MessageBox} from 'element-ui'
 const service = axios.create({
@@ -10,7 +11,7 @@ const service = axios.create({
 //
 // request 拦截器
 service.interceptors.request.use(config => {
-  // config.headers['X-Token'] = 'sfwcv89sfeafadf'
+  config.headers['X-Token'] = getToken()
   return config
 }, error => {
   console.log(error)

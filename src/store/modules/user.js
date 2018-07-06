@@ -16,7 +16,7 @@ const getters = {
 
 const actions = {
   // 登录
-  login ({commit}, userInfo) {
+  LOGIN ({commit}, userInfo) {
     return new Promise((resolve, reject) => {
       doLogin(userInfo).then((res) => {
         setToken(res.token)
@@ -28,7 +28,7 @@ const actions = {
     })
   },
   // 获取用户信息
-  getUserInfo ({commit, state}) {
+  GET_USER_INFO ({commit, state}) {
     return new Promise((resolve, reject) => {
       getInfo(state.token).then((res) => {
         const info = res.data
@@ -52,7 +52,7 @@ const actions = {
   }
 }
 
-const mutation = {
+const mutations = {
   SET_TOKEN (state, token) {
     state.token = token
   },
@@ -71,5 +71,5 @@ export default {
   state,
   getters,
   actions,
-  mutation
+  mutations
 }
