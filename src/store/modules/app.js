@@ -1,12 +1,5 @@
 import Cookies from 'js-cookie'
 
-// const state = {
-//   sidebar: null
-// }
-
-// const getters = {
-//   sidebar: state => state.sidebar
-// }
 const app = {
   state: {
     sidebar: {
@@ -19,7 +12,7 @@ const app = {
     sidebar: state => state.sidebar
   },
   mutations: {
-    TOGGLE_SIDEBART: state => {
+    TOGGLE_SIDEBAR: state => {
       if (state.sidebar.opened) {
         Cookies.set('sidebarStatus', 1)
       } else {

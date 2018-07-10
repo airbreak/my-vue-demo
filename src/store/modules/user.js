@@ -45,7 +45,7 @@ const actions = {
   },
 
   // 登出
-  logOut ({commit, state}) {
+  LOGOUT ({commit, state}) {
     commit('SET_TOKEN', '')
     commit('SET_ROLES', [])
     removeToken()

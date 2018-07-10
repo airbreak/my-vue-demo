@@ -10,7 +10,7 @@ export const constantRouterMap = [
     path: '/',
     name: 'default',
     component: Layout,
-    redirect: 'shopping'
+    redirect: 'login'
   },
   {
     path: '/computed',
