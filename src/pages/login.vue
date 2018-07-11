@@ -55,7 +55,7 @@ export default {
           this.loading = true
           this.$store.dispatch('LOGIN', this.formData).then(()=>{
             this.loading = false
-            this.$router.push({path:'/shopping'})
+            this.$router.push({path:'/computed'})
           }).catch(()=>{
             this.loading = false
           })

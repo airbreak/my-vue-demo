@@ -5,7 +5,7 @@ import Layout from '@/pages/layout/Layout.vue'
 Vue.use(Router)
 export const constantRouterMap = [
   { path: '/login', name: 'login', component: () => import('@/pages/login'), hidden: false },
-  { path: '/404', name: 'login', component: () => import('@/pages/404'), hidden: true },
+  { path: '/404', name: 'login', component: () => import('@/pages/error/404'), hidden: true },
   {
     path: '/',
     name: 'default',
@@ -24,11 +24,29 @@ export const constantRouterMap = [
         component: () => import('@/pages/computed')
       }
     ]
-  },
+  }
+]
+
+export default new Router({
+  scrollBehavior: () => ({ y: 0 }),
+  routes: constantRouterMap
+})
+
+export const asyncRouterMap = [
   {
     path: '/debounceSearch',
     name: 'debounceSearch',
-    component: () => import('@/pages/debounceSearch')
+    component: Layout,
+    redirect: '/debounceSearch/index',
+    meta: {title: 'debounceSearch', icon: 'search'},
+    children: [
+      {
+        path: 'index',
+        name: 'index',
+        component: () => import('@/pages/debounceSearch'),
+        meta: { title: 'debounceSearch', icon: 'search' }
+      }
+    ]
   },
   {
     path: '/testform',
@@ -75,10 +93,20 @@ export const constantRouterMap = [
         meta: { title: 'Cart', icon: 'cart' }
       }
     ]
-  }
+  },
+  {
+    path: '/error',
+    component: Layout,
+    redirect: 'noredirect',
+    name: 'errorPage',
+    meta: {
+      title: 'errorPages',
+      icon: '404'
+    },
+    children: [
+      { path: '401', component: () => import('@/pages/error/401'), name: 'page401', meta: { title: 'page401', noCache: true } },
+      { path: '404', component: () => import('@/pages/error/404'), name: 'page404', meta: { title: 'page404', noCache: true } }
+    ]
+  },
+  { path: '*', redirect: '/404', hidden: true }
 ]
-
-export default new Router({
-  scrollBehavior: () => ({ y: 0 }),
-  routes: constantRouterMap
-})
