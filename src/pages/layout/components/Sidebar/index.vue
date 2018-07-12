@@ -9,7 +9,8 @@
         text-color="#bfcbd9"
         active-text-color="#409eff"
         class="el-menu-vertical-demo">
-      <sidebar-item :routes="routes"></sidebar-item>
+      <!-- <sidebar-item :routes="routes"></sidebar-item> -->
+      <sidebar-item :routes="permissionRouter"></sidebar-item>
     </el-menu>
   </el-scrollbar>
 </template>
@@ -21,9 +22,11 @@ export default {
   components: { SidebarItem },
   computed: {
     ...mapGetters([
-      'sidebar'
+      'sidebar',
+      'permissionRouter'
     ]),
     routes() {
+      console.log('new router',this.$router.options.routes)
       return this.$router.options.routes
     },
     isCollapse() {

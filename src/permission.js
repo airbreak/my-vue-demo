@@ -5,7 +5,7 @@ import 'nprogress/nprogress.css'
 import { Message } from 'element-ui'
 import { getToken } from '@/utils/auth'
 
-function hasPermission(roles, permissionRoles) {
+function hasPermission (roles, permissionRoles) {
   if (roles.indexOf('admin') >= 0) {
     return true
   }
@@ -27,7 +27,8 @@ router.beforeEach((to, from, next) => {
         store.dispatch('GET_USER_INFO').then(res => {
           const roles = res.data.roles
           store.dispatch('GANERATE_ROUTES', { roles }).then(() => {
-            router.addRoutes(store.getters.addRoutes)
+            console.log(store.getters.addRouters)
+            router.addRoutes(store.getters.addRouters)
             next({...to, replace: true})
           })
         }).catch((err) => {
@@ -35,7 +36,15 @@ router.beforeEach((to, from, next) => {
           next({path: '/'})
         })
       } else {
-        next()
+        if (hasPermission(store.getters.roles, to.meta.roles)) {
+          next()
+        } else {
+          next({
+            path: '/401',
+            replace: true,
+            query: {noGoBack: true}
+          })
+        }
       }
     }
   } else {

@@ -29,8 +29,8 @@ export default {
     return {
       loading: true,
       formData: {
-        account: '',
-        pass: ''
+        account: 'admin',
+        pass: '123456'
       },
       rules2: {
         account: [

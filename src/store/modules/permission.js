@@ -1,4 +1,4 @@
-import { asyncRouteMap, constantRouterMap } from '@/router'
+import { asyncRouterMap, constantRouterMap } from '@/router'
 
 /**
  * 通过meta.role判断是否与当前用户权限匹配
@@ -8,7 +8,7 @@ import { asyncRouteMap, constantRouterMap } from '@/router'
 function hasPermIssion (roles, route) {
   if (route.meta && route.meta.roles) {
     return roles.some(role =>
-      route.mata.roles.indexOf(role) >= 0
+      route.meta.roles.indexOf(role) >= 0
     )
   } else {
     return true
@@ -16,11 +16,11 @@ function hasPermIssion (roles, route) {
 }
 
 /**
- * @param {object} asyncRouteMap
+ * @param {object} asyncRouterMap
  * @param {Array} roles
  */
-function filterAsyncRouter (asyncRouteMap, roles) {
-  const accessedRouters = asyncRouteMap.filter(route => {
+function filterAsyncRouter (asyncRouterMap, roles) {
+  const accessedRouters = asyncRouterMap.filter(route => {
     if (hasPermIssion(roles, route)) {
       if (route.children && route.children.length) {
         route.children = filterAsyncRouter(route.children, roles)
@@ -34,24 +34,28 @@ function filterAsyncRouter (asyncRouteMap, roles) {
 
 const permission = {
   state: {
-    router: constantRouterMap,
+    permissionRouter: constantRouterMap,
     addRouters: []
+  },
+  getters: {
+    permissionRouter: state => state.permissionRouter,
+    addRouters: state => state.addRouters
   },
   mutations: {
     SET_ROUTERS: (state, routers) => {
       state.addRouters = routers
-      state.router = constantRouterMap.concat(routers)
+      state.permissionRouter = constantRouterMap.concat(routers)
     }
   },
   actions: {
     GANERATE_ROUTES ({commit}, data) {
       return new Promise(resolve => {
-        const { roles } = data
+        const roles = data.roles
         let accessedRouters
         if (roles.indexOf('admin') >= 0) {
-          accessedRouters = asyncRouteMap
+          accessedRouters = asyncRouterMap
         } else {
-          accessedRouters = filterAsyncRouter(asyncRouteMap, roles)
+          accessedRouters = filterAsyncRouter(asyncRouterMap, roles)
         }
         commit('SET_ROUTERS', accessedRouters)
         resolve()

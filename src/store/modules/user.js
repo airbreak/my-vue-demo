@@ -37,7 +37,7 @@ const actions = {
         }
         commit('SET_NAME', info.name)
         commit('SET_AVATAR', info.avatar)
-        resolve()
+        resolve(res)
       }).catch(error => {
         reject(error)
       })

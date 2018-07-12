@@ -4,6 +4,8 @@
     <breakcrumb></breakcrumb>
     <el-dropdown class="avatar-container" trigger="click">
       <div class="avatar-wrapper">
+        <span>{{name}}</span>
+        <span v-for="item in roles" :key="item">{{item}}</span>
         <img class="user-avatar" :src="avatar + '?imageView2/1/w/80/h/80'">
         <i class="el-icon-caret-bottom"></i>
       </div>
@@ -33,7 +35,9 @@ export default {
   computed: {
     ...mapGetters([
       'sidebar',
-      'avatar'
+      'avatar',
+      'name',
+      'roles'
     ])
   },
   methods: {
