@@ -35,32 +35,23 @@ export default new Router({
 
 export const asyncRouterMap = [
   {
-    path: '/debounceSearch',
-    name: 'debounceSearch',
+    path: '/operation',
+    name: 'operation',
     component: Layout,
-    redirect: '/debounceSearch/index',
-    meta: {title: 'debounceSearch', icon: 'icon_query', roles: ['normal']},
+    redirect: '/operation/debounce',
+    meta: { title: 'operation', icon: 'operate', roles: ['normal'] },
     children: [
       {
-        path: 'index',
-        name: 'index',
+        path: 'debounce',
+        name: 'debounce',
         component: () => import('@/pages/debounceSearch'),
-        meta: { title: 'debounceSearch', icon: 'icon_query', roles: ['normal'] }
-      }
-    ]
-  },
-  {
-    path: '/testform',
-    name: 'testform',
-    component: Layout,
-    redirect: '/testform/index',
-    meta: { title: 'testForm', icon: 'form', roles: ['normal'] },
-    children: [
+        meta: { title: 'debounce', icon: 'icon_query', roles: ['normal'] }
+      },
       {
-        path: 'index',
-        name: 'index',
-        component: () => import('@/pages/testform'),
-        meta: {title: 'testform', icon: 'form', roles: ['normal']}
+        path: '/loadmore',
+        name: 'loadmore',
+        component: () => import('@/pages/loadMoreAndPush'),
+        meta: { title: 'loadmore', icon: 'more', roles: ['normal'] }
       }
     ]
   },
@@ -80,29 +71,30 @@ export const asyncRouterMap = [
     ]
   },
   {
-    path: '/upload',
-    name: 'upload',
+    path: '/component',
+    name: 'component',
     component: Layout,
-    redirect: '/upload/index',
-    meta: { title: 'upload', icon: 'upload', roles: ['admin'] },
+    redirect: '/component/upload',
+    meta: { title: 'component', icon: 'component', roles: ['admin'] },
     children: [
       {
-        path: 'index',
-        name: 'index',
+        path: 'upload',
+        name: 'upload',
         component: () => import('@/pages/upload'),
         meta: { title: 'upload', icon: 'upload', roles: ['admin'] }
+      }, {
+        path: '/menu',
+        name: 'menu',
+        component: () => import('@/pages/navMenuDemo'),
+        meta: { title: 'menu', icon: 'menu', roles: ['admin'] }
+      },
+      {
+        path: 'form',
+        name: 'form',
+        component: () => import('@/pages/testform'),
+        meta: { title: 'form', icon: 'form', roles: ['normal'] }
       }
     ]
-  },
-  {
-    path: '/loadmore',
-    name: 'loadmore',
-    component: () => import('@/pages/loadMoreAndPush')
-  },
-  {
-    path: '/menu',
-    name: 'menu',
-    component: () => import('@/pages/navMenuDemo')
   },
   {
     path: '/shopping',
