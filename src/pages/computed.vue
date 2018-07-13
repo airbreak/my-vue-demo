@@ -24,9 +24,6 @@
        <el-button type="primary" @click="getLocation">获取地址</el-button>
       </el-form-item>
     </el-form>
-    <transition :name="transitionName">
-      <div>1231332</div>
-    </transition>
   </div>
 </template>
 <script>

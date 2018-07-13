@@ -48,7 +48,7 @@ export const asyncRouterMap = [
         meta: { title: 'debounce', icon: 'icon_query', roles: ['normal'] }
       },
       {
-        path: '/loadmore',
+        path: 'loadmore',
         name: 'loadmore',
         component: () => import('@/pages/loadMoreAndPush'),
         meta: { title: 'loadmore', icon: 'more', roles: ['normal'] }
@@ -75,7 +75,7 @@ export const asyncRouterMap = [
     name: 'component',
     component: Layout,
     redirect: '/component/upload',
-    meta: { title: 'component', icon: 'component', roles: ['admin'] },
+    meta: { title: 'component', icon: 'component', roles: ['admin', 'normal'] },
     children: [
       {
         path: 'upload',
@@ -93,6 +93,12 @@ export const asyncRouterMap = [
         name: 'form',
         component: () => import('@/pages/testform'),
         meta: { title: 'form', icon: 'form', roles: ['normal'] }
+      },
+      {
+        path: 'pagination',
+        name: 'pagination',
+        component: () => import('@/pages/pagination'),
+        meta: { title: 'pagination', icon: 'pagination', roles: ['normal'] }
       }
     ]
   },
