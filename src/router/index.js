@@ -21,7 +21,7 @@ export const constantRouterMap = [
       {
         path: 'index',
         name: 'computed',
-        meta: { title: 'computed', icon: 'computer' },
+        meta: { title: 'computed', icon: 'computer', keepAlive: true },
         component: () => import('@/pages/computed')
       }
     ]
@@ -39,19 +39,19 @@ export const asyncRouterMap = [
     name: 'operation',
     component: Layout,
     redirect: '/operation/debounce',
-    meta: { title: 'operation', icon: 'operate', roles: ['normal'] },
+    meta: { title: 'operation', icon: 'operate', roles: ['normal'], keepAlive: true },
     children: [
       {
         path: 'debounce',
         name: 'debounce',
         component: () => import('@/pages/debounceSearch'),
-        meta: { title: 'debounce', icon: 'icon_query', roles: ['normal'] }
+        meta: { title: 'debounce', icon: 'icon_query', roles: ['normal'], keepAlive: true }
       },
       {
         path: 'loadmore',
         name: 'loadmore',
         component: () => import('@/pages/loadMoreAndPush'),
-        meta: { title: 'loadmore', icon: 'more', roles: ['normal'] }
+        meta: { title: 'loadmore', icon: 'more', roles: ['normal'], keepAlive: true }
       }
     ]
   },
@@ -60,13 +60,13 @@ export const asyncRouterMap = [
     name: 'mockjs',
     component: Layout,
     redirect: '/mockjs/index',
-    meta: { title: 'mockjs', icon: 'mockjs', roles: ['admin'] },
+    meta: { title: 'mockjs', icon: 'mockjs', roles: ['admin'], keepAlive: true },
     children: [
       {
         path: 'index',
         name: 'index',
         component: () => import('@/pages/mockjs'),
-        meta: { title: 'mockjs', icon: 'mockjs', roles: ['admin'] }
+        meta: { title: 'mockjs', icon: 'mockjs', roles: ['admin'], keepAlive: true }
       }
     ]
   },
@@ -75,30 +75,42 @@ export const asyncRouterMap = [
     name: 'component',
     component: Layout,
     redirect: '/component/upload',
-    meta: { title: 'component', icon: 'component', roles: ['admin', 'normal'] },
+    meta: { title: 'component', icon: 'component', roles: ['admin', 'normal'], keepAlive: true },
     children: [
       {
         path: 'upload',
         name: 'upload',
-        component: () => import('@/pages/upload'),
-        meta: { title: 'upload', icon: 'upload', roles: ['admin'] }
+        component: () => import('@/pages/component/upload'),
+        meta: { title: 'upload', icon: 'upload', roles: ['admin'], keepAlive: true }
       }, {
         path: '/menu',
         name: 'menu',
-        component: () => import('@/pages/navMenuDemo'),
-        meta: { title: 'menu', icon: 'menu', roles: ['admin'] }
+        component: () => import('@/pages/component/navMenuDemo'),
+        meta: { title: 'menu', icon: 'menu', roles: ['admin'], keepAlive: true }
       },
       {
         path: 'form',
         name: 'form',
-        component: () => import('@/pages/testform'),
-        meta: { title: 'form', icon: 'form', roles: ['normal'] }
+        component: () => import('@/pages/component/testform'),
+        meta: { title: 'form', icon: 'form', roles: ['normal'], keepAlive: true }
       },
       {
         path: 'pagination',
         name: 'pagination',
-        component: () => import('@/pages/pagination'),
-        meta: { title: 'pagination', icon: 'pagination', roles: ['normal'] }
+        component: () => import('@/pages/component/pagination'),
+        meta: { title: 'pagination', icon: 'pagination', roles: ['normal'], keepAlive: true }
+      },
+      {
+        path: 'slot',
+        name: 'slot',
+        component: () => import('@/pages/component/slot'),
+        meta: { title: 'slot', icon: 'pagination', roles: ['normal'], keepAlive: true }
+      },
+      {
+        path: 'navbar',
+        name: 'navbar',
+        component: () => import('@/pages/component/navbar'),
+        meta: { title: 'navbar', icon: 'navigation', roles: ['normal'], keepAlive: true }
       }
     ]
   },
@@ -107,19 +119,19 @@ export const asyncRouterMap = [
     name: 'shopping',
     redirect: '/shopping/list',
     component: Layout,
-    meta: {title: 'Vuex', icon: 'shopping-bag', roles: ['normal']},
+    meta: { title: 'Vuex', icon: 'shopping-bag', roles: ['normal'], keepAlive: true },
     children: [
       {
         path: 'list',
         name: 'shopping-list',
         component: () => import('@/pages/shopping/list'),
-        meta: { title: 'List', icon: 'goods-list' }
+        meta: { title: 'List', icon: 'goods-list', keepAlive: true }
       },
       {
         path: 'cart',
         name: 'shopping-cart',
         component: () => import('@/pages/shopping/cart'),
-        meta: { title: 'Cart', icon: 'cart' }
+        meta: { title: 'Cart', icon: 'cart', keepAlive: true }
       }
     ]
   },

@@ -11,13 +11,11 @@
           <el-input v-model.number="numberValidateForm.age"></el-input>
         </el-form-item>
       </el-form>
-      <testform :name="a" :age="12"></testform>
       <el-button @click="changeInfo"></el-button>
     </div>
 </template>
 
 <script>
-  import testform from '../components/testInfo'
   export default {
     data() {
       return {
@@ -53,9 +51,6 @@
         this.a = '你好'
         this.age = '你好'
       }
-    },
-    components: {
-      testform
     }
   }
 </script>

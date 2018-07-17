@@ -22,6 +22,7 @@
       </el-form-item>
       <el-form-item>
        <el-button type="primary" @click="getLocation">获取地址</el-button>
+       <el-button type="primary" @click="go">go下一页</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -46,6 +47,9 @@
         }
       }
     },
+    created (){
+      console.log('created')
+    },
     computed: {
       location:{
         get() {
@@ -62,6 +66,9 @@
       getLocation(){
         this.$message(this.location);
         this.transitionName = this.transitionName != 'slide-right' ? 'slide-right':''
+      },
+      go() {
+        this.$router.push({path:'/shopping'})
       }
     }
   }
