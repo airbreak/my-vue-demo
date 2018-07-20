@@ -111,6 +111,12 @@ export const asyncRouterMap = [
         name: 'navbar',
         component: () => import('@/pages/component/navbar'),
         meta: { title: 'navbar', icon: 'navigation', roles: ['normal'], keepAlive: true }
+      },
+      {
+        path: 'tree',
+        name: 'tree',
+        component: () => import('@/pages/component/tree'),
+        meta: { title: 'tree', icon: 'tree', roles: ['normal'], keepAlive: true }
       }
     ]
   },
