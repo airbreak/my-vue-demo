@@ -23,7 +23,6 @@
 </template>
 
 <script>
-import { doLogin } from '../api/login'
 export default {
   data() {
     return {

@@ -115,6 +115,21 @@ export const asyncRouterMap = [
     ]
   },
   {
+    path: '/css',
+    name: 'css',
+    component: Layout,
+    redirect: '/css/ballloader',
+    meta: {title: 'css', icon: 'css', roles: ['normal'], keepAlive: false},
+    children: [
+      {
+        path: 'ballloader',
+        name: 'ballloader',
+        component: () => import('@/pages/css/ballJumpStep'),
+        meta: { title: 'ballloader', icon: 'ball', roles: ['normal'], keepAlive: false }
+      }
+    ]
+  },
+  {
     path: '/shopping',
     name: 'shopping',
     redirect: '/shopping/list',

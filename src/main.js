@@ -10,6 +10,7 @@ import '@/styles/index.scss'
 import store from './store'
 import '@/permission'
 import '@/icons'
+import '@/utils/flexible'
 
 Vue.config.productionTip = false
 
