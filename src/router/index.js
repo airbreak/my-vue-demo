@@ -132,6 +132,18 @@ export const asyncRouterMap = [
         name: 'ballloader',
         component: () => import('@/pages/css/ballJumpStep'),
         meta: { title: 'ballloader', icon: 'ball', roles: ['normal'], keepAlive: false }
+      },
+      {
+        path: 'rotateloader',
+        name: 'rotateloader',
+        component: () => import('@/pages/css/rotateloader'),
+        meta: { title: 'rotateloader', icon: 'ball', roles: ['normal'], keepAlive: false }
+      },
+      {
+        path: 'menuborder',
+        name: 'menuborder',
+        component: () => import('@/pages/css/menuborder'),
+        meta: { title: 'menuborder', icon: 'ball', roles: ['normal'], keepAlive: false }
       }
     ]
   },
