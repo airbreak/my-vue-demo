@@ -34,13 +34,10 @@
       this.$nextTick(()=>{
         getNewsByPage(1).then(response => {
           this.listLoading = false
-          this.list = response.data
+          this.list = response.list
         })
         this.scrollListener = utils.throttle(this.doCheck.bind(this),200)
         document.addEventListener('scroll', this.scrollListener)
-        // document.addEventListener('scroll', function () {
-        //   console.log(123)
-        // })
       })
     },
     methods: {
@@ -63,9 +60,9 @@
         getNewsByPage(this.currentPageIndex).then(response => {
           window.setTimeout(()=>{
             this.loadingMoreFlag = false
-            if(response.data) {
-              if(response.data.length>0) {
-                this.list.push(...response.data)
+            if(response.list) {
+              if(response.list.length>0) {
+                this.list.push(...response.list)
                 this.allLoadedEnd = false
               }else {
                 this.allLoadedEnd = true

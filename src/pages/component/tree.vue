@@ -3,29 +3,33 @@
     <p>使用scoped slot</p>
     <el-tree
     :data="data5"
+    :default-checked-keys="[4]"
     show-checkbox
     node-key="id"
     default-expand-all
+    ref="tree"
+    highlight-current
     :expand-on-click-node="false">
     <span class="custom-tree-node" slot-scope="{ node, data}">
-      <span>{{ node.lable }}</span>
+      <span>{{ node.label }}</span>
       <span>
         <el-button
           type="text"
           size="mini"
-          @click="() =>append(data)">
+          @click="() => append(data)">
           Append
         </el-button>
         <el-button
         type="text"
         size="mini"
-        @click="()=>remove(node, data)">
+        @click="() => remove(node, data)">
           Delete
         </el-button>
       </span>
     </span>
 
     </el-tree>
+    <button @click="getIndexById">获取下标</button>
   </div>
 </template>
 
@@ -33,7 +37,8 @@
 let id = 1000
 export default {
   data() {
-    const tempData = [{
+    return {
+     data5: [{
         id: 1,
         label: '一级1',
         children: [{
@@ -41,7 +46,7 @@ export default {
             label: '一级1-1'
           },{
             id: 11,
-            lable: '一级1-2'
+            label: '一级1-2'
           }
         ]
       },{
@@ -54,13 +59,11 @@ export default {
         id: 4,
         label: '一级4'
       }]
-    return {
-     data5: JSON.stringify(tempData)
     }
   },
   methods: {
     append(data) {
-      const newChild = { id: id ++,lable:'test', children:[]}
+      const newChild = { id: id ++,label:'test', children:[]}
       if(!data.children){
         this.$set(data, 'children', [])
       }
@@ -69,7 +72,7 @@ export default {
     remove(node, data) {
       const parent = node.parent
       const children = parent.data.children || parent.data
-      const index = children.findIdex(d => d.id === data.id)
+      const index = children.findIndex(d => d.id === data.id)
       children.splice(index,1)
     }
   }

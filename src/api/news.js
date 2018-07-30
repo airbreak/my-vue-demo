@@ -5,7 +5,7 @@ import request from '@/utils/request'
 
 export function getNewsByPage (page) {
   return request({
-    url: 'v1/news/' + page + '/10',
+    url: '/news/' + page + '/10',
     method: 'get'
   })
 }
