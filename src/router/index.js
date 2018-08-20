@@ -7,6 +7,12 @@ export const constantRouterMap = [
   { path: '/login', name: 'login', component: () => import('@/pages/login'), hidden: false },
   { path: '/404', name: '404', component: () => import('@/pages/error/404'), hidden: false },
   {
+    path: '/wxauthor/:code',
+    name: 'wxauthor',
+    component: () => import('@/pages/wxauthor'),
+    hidden: false
+  },
+  {
     path: '/',
     name: 'default',
     component: Layout,
@@ -144,6 +150,12 @@ export const asyncRouterMap = [
         name: 'menuborder',
         component: () => import('@/pages/css/menuborder'),
         meta: { title: 'menuborder', icon: 'ball', roles: ['normal'], keepAlive: false }
+      },
+      {
+        path: 'soundwaveloader',
+        name: 'soundwaveloader',
+        component: () => import('@/pages/css/soundwaveloader'),
+        meta: { title: 'soundwaveloader', icon: 'ball', roles: ['normal'], keepAlive: false }
       }
     ]
   },

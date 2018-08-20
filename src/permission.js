@@ -15,7 +15,14 @@ function hasPermission (roles, permissionRoles) {
   return roles.some(role => permissionRoles.indexOf(role) >= 0)
 }
 
-const whiteList = ['/login']
+function isInWhiteList (url) {
+  let index = whiteList.findIndex((item) => {
+    return url.indexOf(item) >= 0
+  })
+  return index >= 0
+}
+
+const whiteList = ['/login', '/wxauthor/123']
 router.beforeEach((to, from, next) => {
   NProgress.start()
   if (getToken()) {
@@ -48,10 +55,18 @@ router.beforeEach((to, from, next) => {
       }
     }
   } else {
-    if (whiteList.indexOf(to.path) !== -1) {
+    if (isInWhiteList(to.path)) {
       next()
     } else {
       next('/login')
+
+      // TODO 测试微信公众号授权登录
+      // var url = 'https://open.weixin.qq.com/connect/oauth2/authorize?' +
+      //   'appid=wx933f4149e681606e' +
+      //   '&redirect_uri=' + encodeURI('http://3bwnc6.natappfree.cc/my-vue-demo/dist/index.html#/wxauthor') +
+      //   '&response_type=code&scope=snsapi_userinfo' +
+      //   '&state=STATE#wechat_redirect'
+      // window.location.href = url
       NProgress.done()
     }
   }

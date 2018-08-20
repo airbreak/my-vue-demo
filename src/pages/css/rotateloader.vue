@@ -5,9 +5,6 @@
       <span>加载中……</span>
     </div>
     <el-button @click="loadData()">{{btnTxt}}</el-button>
-    <div v-for="item in arr" :key="item.id">
-      <a :href="getHref(item.order_id)">订单详情</a>
-    </div>
   </div>
 </template>
 
@@ -16,16 +13,10 @@ export default {
   data() {
     return {
       btnTxt: '加载',
-      showLoading: false,
-      arr:[
-        {id:1,order_id:1}
-      ]
+      showLoading: false
     }
   },
   methods:{
-    getHref (order_id){
-        return '#/orderdetails/' + order_id
-    },
     loadData() {
       this.showLoading = !this.showLoading
       this.btnTxt = this.showLoading? '停止加载':'加载'
