@@ -22,21 +22,21 @@
 </template>
 
 <script>
-import { mapGetters, mapActions} from 'vuex'
+import {mapGetters, mapActions} from 'vuex'
 export default {
-  data() {
+  data () {
     return {
       totalCounts: 0
     }
   },
-  computed:{
+  computed: {
     ...mapGetters({
-      goods:'cartProducts',
+      goods: 'cartProducts',
       checkoutStatus: 'checkoutStatus',
       total: 'cartTotalPrice'
-    }),
+    })
   },
-  mounted() {
+  mounted () {
     this.$nextTick(() => {
       // this.$store.dispatch('getAllCartProducts')  // 等同于 将 getAllCartProducts ...mapActions到当前的环境中
       this.getAllCartProducts()
@@ -50,18 +50,18 @@ export default {
       'deleteProductFromCart'
     ]),
     add (row) {
-      this.addProductToCart({product:row, isCheckInventory:false});
+      this.addProductToCart({product: row, isCheckInventory: false})
     },
     decrease (row) {
-      this.decreaseProductFromCart(row);
+      this.decreaseProductFromCart(row)
     },
     deleteItem (row) {
       this.$confirm('是否移除购物车', '确定移除', {
         confirmButtonText: '确定',
         cancleButtonText: '取消',
         type: 'warning'
-      }).then(()=>{
-        this.deleteProductFromCart(row.id);
+      }).then(() => {
+        this.deleteProductFromCart(row.id)
       })
     }
   }

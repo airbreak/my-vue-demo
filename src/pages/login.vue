@@ -24,7 +24,7 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
       loading: true,
       formData: {
@@ -33,29 +33,29 @@ export default {
       },
       rules2: {
         account: [
-          {required: true, message:'请输入账号', trigger:'blur'},
-          {min: 3, max:10, message: '长度在3 - 10个字符', trigger: 'blur'}
+          {required: true, message: '请输入账号', trigger: 'blur'},
+          {min: 3, max: 10, message: '长度在3 - 10个字符', trigger: 'blur'}
         ],
         pass: [
-          {required: true, message:'请输入密码', trigger:'blur'},
-          {min: 3, max:10, message: '长度在3 - 10个字符', trigger: 'blur'}
+          {required: true, message: '请输入密码', trigger: 'blur'},
+          {min: 3, max: 10, message: '长度在3 - 10个字符', trigger: 'blur'}
         ]
       }
     }
   },
 
-  mounted() {
+  mounted () {
 
   },
   methods: {
     login (formName) {
-      this.$refs[formName].validate((valid)=>{
-        if(valid) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
           this.loading = true
-          this.$store.dispatch('LOGIN', this.formData).then(()=>{
+          this.$store.dispatch('LOGIN', this.formData).then(() => {
             this.loading = false
-            this.$router.push({path:'/computed'})
-          }).catch(()=>{
+            this.$router.push({path: '/computed'})
+          }).catch(() => {
             this.loading = false
           })
         } else {
