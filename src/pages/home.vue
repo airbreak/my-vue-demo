@@ -6,32 +6,32 @@
   </div>
 </template>
 <script>
-  export default {
-    data () {
-      return {
-        menuList: []
-      }
-    },
-    mounted(){
-      this.$nextTick(()=>{
-        this.initMenuList()
-      })
-    },
-    methods: {
-      initMenuList () {
-        this.menuList = [
-          { name: '计算属性',url: 'computed'},
-          { name: 'debounce搜索',url: 'debounceSearch'},
-          { name: 'mockjs试用',url: 'mockjs'},
-          { name: '上传图片',url: 'upload'},
-          { name: '加载更多',url: 'loadmore'},
-          { name: '购物(非模块化的vuex)',url: 'shopping'},
-          { name: '用户信息(模块化的vuex)',url: 'login'},
-          { name: '菜单',url: 'menu'},
-        ]
-      }
+export default {
+  data () {
+    return {
+      menuList: []
+    }
+  },
+  mounted () {
+    this.$nextTick(() => {
+      this.initMenuList()
+    })
+  },
+  methods: {
+    initMenuList () {
+      this.menuList = [
+        { name: '计算属性',url: 'computed' },
+        { name: 'debounce搜索',url: 'debounceSearch' },
+        { name: 'mockjs试用',url: 'mockjs' },
+        { name: '上传图片',url: 'upload' },
+        { name: '加载更多',url: 'loadmore' },
+        { name: '购物(非模块化的vuex)',url: 'shopping' },
+        { name: '用户信息(模块化的vuex)',url: 'login' },
+        { name: '菜单',url: 'menu' },
+      ]
     }
   }
+}
 </script>
 <style>
   .link-box{

@@ -25,14 +25,14 @@ export default {
       'sidebar',
       'permissionRouter'
     ]),
-    routes() {
-      console.log('new router',this.$router.options.routes)
+    routes () {
+      console.log('new router', this.$router.options.routes)
       return this.$router.options.routes
     },
-    isCollapse() {
+    isCollapse () {
       return !this.sidebar.opened
     }
-  },
+  }
 }
 </script>
 

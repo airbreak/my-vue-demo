@@ -10,13 +10,13 @@
 </template>
 
 <script>
-import AppMain from "./components/AppMain.vue"
-import Sidebar from "./components/Sidebar/index.vue"
+import AppMain from './components/AppMain.vue'
+import Sidebar from './components/Sidebar/index.vue'
 import ResizeMixin from './mixin/ResizeHandler'
 import Navbar from './components/Navbar'
 export default {
   name: 'layout',
-  components :{
+  components: {
     AppMain,
     Sidebar,
     Navbar
@@ -38,14 +38,14 @@ export default {
     }
   },
   methods: {
-    handleClickOutside() {
+    handleClickOutside () {
       this.$store.dispatch('CloseSideBar', {withoutAnimation: false})
     },
-    toggleClick() {
+    toggleClick () {
       this.$store.dispatch('ToggleSideBar')
     }
   },
-  data() {
+  data () {
     return {
 
     }

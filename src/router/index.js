@@ -123,6 +123,12 @@ export const asyncRouterMap = [
         name: 'tree',
         component: () => import('@/pages/component/tree'),
         meta: { title: 'tree', icon: 'tree', roles: ['normal'], keepAlive: true }
+      },
+      {
+        path: 'qrcode',
+        name: 'qrcode',
+        component: () => import('@/pages/component/qrcode'),
+        meta: { title: 'qrcode', icon: 'qrcode', roles: ['normal'], keepAlive: true }
       }
     ]
   },
