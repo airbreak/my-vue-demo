@@ -162,6 +162,12 @@ export const asyncRouterMap = [
         name: 'soundwaveloader',
         component: () => import('@/pages/css/soundwaveloader'),
         meta: { title: 'soundwaveloader', icon: 'ball', roles: ['normal'], keepAlive: false }
+      },
+      {
+        path: 'mixblendmode',
+        name: 'mixBlendMode',
+        component: () => import('@/pages/css/mixBlendMode'),
+        meta: { title: 'css颜色混合', icon: 'ball', roles: ['normal'], keepAlive: false }
       }
     ]
   },
