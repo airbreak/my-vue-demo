@@ -24,7 +24,7 @@ export default {
 .main-box {
   height:100vh;
   color: #fff;
-  background-image: linear-gradient(-45deg,#fff 50%,#000 50%);
+  background-image: linear-gradient(180deg,#fff 50%,#000 50%);
   display: flex;
   align-items: center;
   justify-content: center;

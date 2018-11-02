@@ -5,7 +5,7 @@
         :action="imgUpload.action"
         ref="upload"
         list-type="picture-card"
-        name="img"
+        name="file"
         :limit="1"
         :disabled="imgUpload.disabled"
         :multiple="imgUpload.multiple"
@@ -22,49 +22,47 @@
     </div>
 </template>
 <script>
-  import {getUserDetail,deteleOne} from '@/api/upload'
-
-  export default {
-    data() {
-      return {
-        listLoading:false,
-        imgUpload: {
-          action: 'http://v.cn/api/v1/upload',
-          multiple: false,
-          dialogImageUrl: '',
-          dialogVisible: false,
-          list:[],
-          disabled: false,
-          auto: true
-        }
-      };
-    },
-    mounted () {
-      this.$nextTick(()=>{
-        getUserDetail().then(response => {
-          this.listLoading = false
-          let url = response.data.avatar
-          this.imgUpload.dialogImageUrl = url
-          this.imgUpload.list = [{name:'图片',url: url}]
-        })
-      })
-    },
-    methods: {
-      handleRemove(file, fileList) {
-        console.log(file, fileList);
-        this.imgUpload.disabled = false
-      },
-      handlePictureCardPreview(file) {
-        this.imgUpload.dialogImageUrl = file.url;
-        this.imgUpload.dialogVisible = true;
-      },
-      submitUpload() {
-        // this.$refs.upload.submit();
-        deteleOne().then(response => {
-          console.log(response)
-        })
+import {getUserDetail, deteleOne} from '@/api/upload'
+export default {
+  data () {
+    return {
+      listLoading: false,
+      imgUpload: {
+        action: 'http://phpupload.cn/upload.php',
+        multiple: false,
+        dialogImageUrl: '',
+        dialogVisible: false,
+        list: [],
+        disabled: false,
+        auto: true
       }
     }
+  },
+  mounted () {
+    this.$nextTick(() => {
+      // getUserDetail().then(response => {
+      //   this.listLoading = false
+      //   let url = response.data.avatar
+      //   this.imgUpload.dialogImageUrl = url
+      //   this.imgUpload.list = [{name: '图片', url: url}]
+      // })
+    })
+  },
+  methods: {
+    handleRemove (file, fileList) {
+      console.log(file, fileList)
+      this.imgUpload.disabled = false
+    },
+    handlePictureCardPreview (file) {
+      this.imgUpload.dialogImageUrl = file.url
+      this.imgUpload.dialogVisible = true
+    },
+    submitUpload () {
+      // this.$refs.upload.submit();
+      deteleOne().then(response => {
+        console.log(response)
+      })
+    }
   }
+}
 </script>
-

@@ -128,7 +128,13 @@ export const asyncRouterMap = [
         path: 'qrcode',
         name: 'qrcode',
         component: () => import('@/pages/component/qrcode'),
-        meta: { title: 'qrcode', icon: 'qrcode', roles: ['normal'], keepAlive: true }
+        meta: { title: 'qrcode', icon: 'scan', roles: ['normal'], keepAlive: true }
+      },
+      {
+        path: 'print',
+        name: 'print',
+        component: () => import('@/pages/component/print'),
+        meta: { title: 'print', icon: 'scan', roles: ['normal'], keepAlive: true }
       }
     ]
   },
