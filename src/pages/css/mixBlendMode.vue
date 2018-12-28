@@ -5,7 +5,7 @@
       <div class="word"> CHINA</div>
     </div>
     <div class="main-box">
-      <h1>Gentle Adaboost算法详解</h1>
+      <h1>Video Suggestion and Discovery for YouTube</h1>
     </div>
   </div>
 </template>
@@ -24,14 +24,16 @@ export default {
 .main-box {
   height:100vh;
   color: #fff;
-  background-image: linear-gradient(180deg,#fff 50%,#000 50%);
+  background-image: linear-gradient(-45deg,#fff 50%,#000 50%);
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   h1 {
+    font-family: 'Times New Roman', Times, serif;
     color: #fff;
     mix-blend-mode: difference;
-    font-size: 5vw;
+    font-size: 3.5vw;
   }
 }
 .main-box2 {

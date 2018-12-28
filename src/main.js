@@ -11,6 +11,7 @@ import store from './store'
 import '@/permission'
 import '@/icons'
 import '@/utils/flexible'
+import '@/utils/print1'
 
 Vue.config.productionTip = false
 
@@ -20,8 +21,6 @@ Vue.use(BaiduMap, {
 
 Vue.use(ElementUI)
 /* eslint-disable no-new */
-
-
 
 new Vue({
   el: '#app',

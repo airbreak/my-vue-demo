@@ -27,3 +27,16 @@
     }
   }
 }
+.el-submenu .router-link-active {
+  position: relative;
+}
+.el-submenu .router-link-active::before{
+  content: '';
+  position: absolute;
+  left:0;
+  top:0;
+  bottom: 0;
+  width: 4px;
+  background-color: blue;
+  z-index: 1000;
+}
