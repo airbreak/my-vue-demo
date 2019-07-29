@@ -135,6 +135,12 @@ export const asyncRouterMap = [
         name: 'print',
         component: () => import('@/pages/component/print'),
         meta: { title: 'print', icon: 'scan', roles: ['normal'], keepAlive: true }
+      },
+      {
+        path: 'table',
+        name: 'table',
+        component: () => import('@/pages/component/table'),
+        meta: { title: 'table', icon: 'table', roles: ['normal'], keepAlive: true }
       }
     ]
   },
