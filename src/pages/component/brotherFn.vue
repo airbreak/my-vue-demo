@@ -1,12 +1,7 @@
 <template>
   <div>
-      <label v-for="(item, index) in arr"
-        :key="item"
-        class="txt"
-        :class="{'selected':selectedIndex === index}"
-        @click="change(index)">
-          {{item}}
-      </label>
+      <div>请先跳转到也么</div>
+      <div style="font-size:20px;" @click="brother(index)">兄弟组件调用</div>
   </div>
 </template>
 
@@ -21,9 +16,7 @@ export default {
     }
   },
   methods: {
-    change (index) {
-      debugger
-      this.selectedIndex = index
+    brother (index) {
       Utils.$emit('getMyLocation','msg');
     }
  }

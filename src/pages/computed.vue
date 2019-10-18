@@ -42,6 +42,7 @@
   </div>
 </template>
 <script>
+import Utils from '../utils/fnUtil';
 export default {
   data () {
     return {
@@ -282,6 +283,13 @@ export default {
       //   this.lastName = names[name.length -1]
       // }
     }
+  },
+  mounted () {
+    var that = this;
+    Utils.$on('getMyLocation', function (msg) {
+      console.log(msg);
+      that.getLocation();
+    })
   },
   methods: {
     getLocation () {

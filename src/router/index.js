@@ -147,6 +147,12 @@ export const asyncRouterMap = [
         name: 'test',
         component: () => import('@/pages/component/test'),
         meta: { title: 'test', icon: 'table', roles: ['normal'], keepAlive: true }
+      },
+      {
+        path: 'brother',
+        name: 'brother',
+        component: () => import('@/pages/component/brotherFn'),
+        meta: { title: 'brother', icon: 'table', roles: ['normal'], keepAlive: true }
       }
     ]
   },
