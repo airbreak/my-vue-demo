@@ -16,43 +16,43 @@
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        a:'haah',
-        age:'123',
-        numberValidateForm: {
-          age: ''
-        },
-        rules:{
-          age:[
-            { required: true, message: 'age is required'},
-            { type: 'number', message: 'age must be a number'},
-            { pattern: /^(\\d|[1-9]\\d|100)$/, message: '0-100'}
-          ]
-        }
-      };
-    },
-    methods: {
-      submitForm(formName) {
-        this.$refs[formName].validate((valid) => {
-          if (valid) {
-            alert('submit!');
-          } else {
-            console.log('error submit!!');
-            return false;
-          }
-        });
+export default {
+  data () {
+    return {
+      a: 'haah',
+      age: '123',
+      numberValidateForm: {
+        age: ''
       },
-      resetForm(formName) {
-        this.$refs[formName].resetFields();
-      },
-      changeInfo() {
-        this.a = '你好'
-        this.age = '你好'
+      rules: {
+        age: [
+          {required: true, message: 'age is required'},
+          {type: 'number', message: 'age must be a number'},
+          {pattern: /^(\\d|[1-9]\\d|100)$/, message: '0-100'}
+        ]
       }
     }
+  },
+  methods: {
+    submitForm (formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          alert('submit!')
+        } else {
+          console.log('error submit!!')
+          return false
+        }
+      })
+    },
+    resetForm (formName) {
+      this.$refs[formName].resetFields()
+    },
+    changeInfo () {
+      this.a = '你好'
+      this.age = '你好'
+    }
   }
+}
 </script>
 
 <style lang="sass" scoped>

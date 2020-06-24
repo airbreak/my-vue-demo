@@ -49,22 +49,22 @@
   </div>
 </template>
 <script>
-  export default {
-    methods: {
-      handleSizeChange(val) {
-        console.log(`${val} items per page`);
-      },
-      handleCurrentChange(val) {
-        console.log(`current page: ${val}`);
-      }
+export default {
+  methods: {
+    handleSizeChange (val) {
+      console.log(`${val} items per page`)
     },
-    data() {
-      return {
-        currentPage1: 5,
-        currentPage2: 5,
-        currentPage3: 5,
-        currentPage4: 4
-      };
+    handleCurrentChange (val) {
+      console.log(`current page: ${val}`)
+    }
+  },
+  data () {
+    return {
+      currentPage1: 5,
+      currentPage2: 5,
+      currentPage3: 5,
+      currentPage4: 4
     }
   }
+}
 </script>

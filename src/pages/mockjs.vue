@@ -34,30 +34,30 @@
 <script>
 import Mock from 'mockjs'
 export default {
-  name: "mock-test",
+  name: 'mock-test',
   data () {
     return {
-      dataArr :[]
+      dataArr: []
     }
   },
-  mounted (){
-    this.$nextTick(()=>{
-        let data = Mock.mock({
-          'list|50-100': [{
-            'id|+1': 88,
-            'name': '@cname',
-            'age|18-28': 0,
-            'city':'@city(false)',
-            'avatar': '',
-            'nameColor': '@color',
-            'isMale|1': true,
-          }]
-        })
+  mounted () {
+    this.$nextTick(() => {
+      let data = Mock.mock({
+        'list|50-100': [{
+          'id|+1': 88,
+          'name': '@cname',
+          'age|18-28': 0,
+          'city': '@city(false)',
+          'avatar': '',
+          'nameColor': '@color',
+          'isMale|1': true
+        }]
+      })
       this.dataArr = data.list
-      Mock.mock('http://test.com', function(options) {
-        console.log(options);
+      Mock.mock('http://test.com', function (options) {
+        console.log(options)
         let aaa = Mock.mock({
-          "user|1-3": [{
+          'user|1-3': [{
             'name': '@cname',
             'id|+1': 88
           }]
@@ -66,7 +66,7 @@ export default {
       })
     })
   },
-  methods:{
+  methods: {
   }
 }
 </script>

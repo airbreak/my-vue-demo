@@ -1,10 +1,9 @@
+/* eslint-disable */
 /**
  * Created by jiangjianming@bmkp.cn on 2018/6/8.
  */
-class MyScroll{
-  constructor(){
-
-  }
+class MyScroll {
+  constructor () {}
   /*
   * 获取滚动位置信息
   * @param element

@@ -10,16 +10,16 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
       btnTxt: '加载',
       showLoading: false
     }
   },
-  methods:{
-    loadData() {
+  methods: {
+    loadData () {
       this.showLoading = !this.showLoading
-      this.btnTxt = this.showLoading? '停止加载':'加载'
+      this.btnTxt = this.showLoading ? '停止加载' : '加载'
     }
   }
 }

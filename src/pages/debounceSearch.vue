@@ -15,41 +15,40 @@
 
 <script>
 import Utils from '../utils/utils'
-const  utils = new Utils()
+const utils = new Utils()
 export default {
-  name: "debounce-search",
-  data() {
-    return{
+  name: 'debounce-search',
+  data () {
+    return {
       keywords: '',
-      result:''
+      result: ''
     }
   },
-  mounted() {
-    this.$nextTick(()=>{
+  mounted () {
+    this.$nextTick(() => {
       this.doSearchFn = this.doSearch()
     })
   },
   watch: {
-    keywords (newVal,oldVal) {
+    keywords (newVal, oldVal) {
       this.result = '等待输入结束……'
       this.doSearchFn()
     }
   },
-  methods:{
-    doSearch (){
-     return utils.debounce(() =>{
+  methods: {
+    doSearch () {
+      return utils.debounce(() => {
         let reg = /.*(？|\?)/
-        console.log( reg.test(this.keywords))
-        if ( !reg.test(this.keywords)) {
+        console.log(reg.test(this.keywords))
+        if (!reg.test(this.keywords)) {
           this.result = '亲，搜索问题要以问号结尾哦. ;-)'
           return
         }
         this.result = 'Thinking...'
-        window.setTimeout(()=>{
-          this.result = '哈哈，搜索到了。这个是惊天的秘密 ---' +this.keywords
-        },1000)
-
-      },500)
+        window.setTimeout(() => {
+          this.result = '哈哈，搜索到了。这个是惊天的秘密 ---' + this.keywords
+        }, 1000)
+      }, 500)
     },
 
     getData () {

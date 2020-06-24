@@ -22,7 +22,7 @@
     </div>
 </template>
 <script>
-import {getUserDetail, deteleOne} from '@/api/upload'
+import { deteleOne } from '@/api/upload'
 export default {
   data () {
     return {

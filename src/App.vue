@@ -7,9 +7,9 @@
 <script>
 export default {
   name: 'App',
-  data (){
+  data () {
     return {
-      transitionName:''
+      transitionName: ''
     }
   },
   watch: {
@@ -18,7 +18,7 @@ export default {
       const fromDepth = from.path.split('/').length
       this.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left'
     }
-  },
+  }
 }
 </script>
 

@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex"
+import { mapGetters } from 'vuex'
 import Breakcrumb from '@/components/Breadcrumb'
 import Hamburger from '@/components/Hamburger'
 export default {
@@ -41,17 +41,16 @@ export default {
     ])
   },
   methods: {
-    toggleSidebar() {
+    toggleSidebar () {
       this.$store.dispatch('ToggleSideBar')
     },
-    logout() {
-      debugger;
+    logout () {
       this.$store.dispatch('LOGOUT').then(() => {
         location.reload()
       })
     }
   },
-  data() {
+  data () {
     return {
 
     }

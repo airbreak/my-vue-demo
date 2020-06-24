@@ -15,64 +15,66 @@
   </div>
 </template>
 <script>
-  import {getNewsByPage} from '../api/news'
-  import {MyScroll} from '../utils/myScroll'
-  import Utils from '../utils/utils'
-  const myScroll = new MyScroll()
-  const  utils = new Utils()
-  export default {
-    data() {
-      return {
-        listLoading: true,
-        list: [],
-        currentPageIndex: 1,
-        allLoadedEnd: false,
-        loadingMoreFlag: false
-      }
-    },
-    mounted () {
-      this.$nextTick(()=>{
-        getNewsByPage(1).then(response => {
-          this.listLoading = false
-          this.list = response.list
-        })
-        this.scrollListener = utils.throttle(this.doCheck.bind(this),200)
-        document.addEventListener('scroll', this.scrollListener)
+import {getNewsByPage} from '../api/news'
+import {MyScroll} from '../utils/myScroll'
+import Utils from '../utils/utils'
+const myScroll = new MyScroll()
+const utils = new Utils()
+export default {
+  data () {
+    return {
+      listLoading: true,
+      list: [],
+      currentPageIndex: 1,
+      allLoadedEnd: false,
+      loadingMoreFlag: false,
+      name: ''
+    }
+  },
+  mounted () {
+    this.$nextTick(() => {
+      this.name = this.$route.params.name
+      getNewsByPage(1).then(response => {
+        this.listLoading = false
+        this.list = response.list
       })
-    },
-    methods: {
-      doCheck () {
-        if(this.allLoadedEnd || this.loadingMoreFlag){
-          return
-        }
-        let scrollTop = myScroll.getScrollTop()
-        let visibleHeight = myScroll.getVisibleHeight()
-        let scrollHeight = myScroll.getScrollHeight()
-        let downTrigger = visibleHeight +scrollTop + 55 >= scrollHeight
-        if(downTrigger) {
-          // directive.vm.$get(this.loadDownFn)
-          this.loadDownFn()
-        }
-      },
-      loadDownFn (){
-        this.loadingMoreFlag = true
-        this.currentPageIndex ++
-        getNewsByPage(this.currentPageIndex).then(response => {
-          window.setTimeout(()=>{
-            this.loadingMoreFlag = false
-            if(response.list) {
-              if(response.list.length>0) {
-                this.list.push(...response.list)
-                this.allLoadedEnd = false
-              }else {
-                this.allLoadedEnd = true
-              }
-            }
-          },2000)
-        })
+      this.scrollListener = utils.throttle(this.doCheck.bind(this), 200)
+      document.addEventListener('scroll', this.scrollListener)
+    })
+  },
+  methods: {
+    doCheck () {
+      if (this.allLoadedEnd || this.loadingMoreFlag) {
+        return
       }
+      let scrollTop = myScroll.getScrollTop()
+      let visibleHeight = myScroll.getVisibleHeight()
+      let scrollHeight = myScroll.getScrollHeight()
+      let downTrigger = visibleHeight + scrollTop + 55 >= scrollHeight
+      if (downTrigger) {
+        // directive.vm.$get(this.loadDownFn)
+        this.loadDownFn()
+      }
+    },
+    loadDownFn () {
+      this.loadingMoreFlag = true
+      this.currentPageIndex++
+      getNewsByPage(this.currentPageIndex).then(response => {
+        window.setTimeout(() => {
+          this.loadingMoreFlag = false
+          if (response.list) {
+            if (response.list.length > 0) {
+              this.list.push(...response.list)
+              this.allLoadedEnd = false
+            } else {
+              this.allLoadedEnd = true
+            }
+          }
+        }, 2000)
+      })
     }
   }
+}
 </script>
 <style scoped lang="sass">
   .wrapper-box
@@ -119,4 +121,3 @@
     to
       transform: scale(1, 1)
 </style>
-

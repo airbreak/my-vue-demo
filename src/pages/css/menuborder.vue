@@ -50,13 +50,13 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
-      searchOrderType:'list'
+      searchOrderType: 'list'
     }
   },
   methods: {
-    switchSearchOrderType (val){
+    switchSearchOrderType (val) {
       this.searchOrderType = val
     }
   }

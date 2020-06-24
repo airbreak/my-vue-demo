@@ -6,32 +6,31 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
-      code:'',
+      code: '',
       formData: {
         account: 'admin',
         pass: '123456'
-      },
+      }
     }
   },
 
-  mounted() {
-      // this.$route.params.code
-      this.code = this.$route.params.code
-       this.$store.dispatch('LOGIN', this.formData).then(()=>{
-
-       })
+  mounted () {
+    // this.$route.params.code
+    this.code = this.$route.params.code
+    this.$store.dispatch('LOGIN', this.formData).then(() => {
+    })
   },
   methods: {
     login (formName) {
-      this.$refs[formName].validate((valid)=>{
-        if(valid) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
           this.loading = true
-          this.$store.dispatch('LOGIN', this.formData).then(()=>{
+          this.$store.dispatch('LOGIN', this.formData).then(() => {
             this.loading = false
-            this.$router.push({path:'/computed'})
-          }).catch(()=>{
+            this.$router.push({path: '/computed'})
+          }).catch(() => {
             this.loading = false
           })
         } else {

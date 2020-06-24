@@ -18,12 +18,12 @@
 <script>
 import testSlot from '@/components/slot'
 export default {
-  data() {
+  data () {
     return {
 
     }
   },
-  components:{
+  components: {
     testSlot
   }
 }

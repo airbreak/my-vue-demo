@@ -1,7 +1,7 @@
 /**
  * Created by jiangjianming@bmkp.cn on 2018/6/1.
  */
-import { getToken } from '@/utils/auth'
+// import { getToken } from '@/utils/auth'
 import axios from 'axios'
 import {Message, MessageBox} from 'element-ui'
 const service = axios.create({

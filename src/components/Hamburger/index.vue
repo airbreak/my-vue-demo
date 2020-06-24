@@ -18,7 +18,7 @@
 
 <script>
 export default {
-  name:'hamburger',
+  name: 'hamburger',
   props: {
     isActive: {
       type: Boolean,
@@ -29,7 +29,7 @@ export default {
       default: null
     }
   },
-  data() {
+  data () {
     return {
 
     }

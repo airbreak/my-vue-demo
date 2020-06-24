@@ -9,6 +9,7 @@
       <el-table-column label="操作">
         <template slot-scope="scope">
           <el-button :disabled="scope.row.inventory<=0" @click="addToCart(scope.row)">加入</el-button>
+          <router-link :to="'/shopping/detail/' + scope.row.id">详情</router-link>
         </template>
       </el-table-column>
     </el-table>
@@ -27,29 +28,29 @@ export default {
     }
   },
 
-  computed:{
+  computed: {
     ...mapGetters({
       allProducts: 'allProducts',
       isLoading: 'isLoading'
     })
   },
 
-  mounted() {
+  mounted () {
     this.$nextTick(() => {
       this.$store.dispatch('getAllProducts')
       this.$store.dispatch('getAllCartProducts')
     })
   },
-  methods:{
+  methods: {
     ...mapActions([
       'addProductToCart'
     ]),
     addToCart (row) {
-      this.addProductToCart({product:row})
+      this.addProductToCart({product: row})
       this.$message({
         message: '成功添加到购物车！',
         type: 'success'
-      });
+      })
     },
     showCart () {
       this.$router.push('cart')

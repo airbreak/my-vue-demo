@@ -36,44 +36,43 @@
 <script>
 let id = 1000
 export default {
-  data() {
+  data () {
     return {
-     data5: [{
+      data5: [{
         id: 1,
         label: '一级1',
         children: [{
-            id: 10,
-            label: '一级1-1'
-          },{
-            id: 11,
-            label: '一级1-2'
-          }
-        ]
-      },{
+          id: 10,
+          label: '一级1-1'
+        }, {
+          id: 11,
+          label: '一级1-2'
+        }]
+      }, {
         id: 2,
         label: '一级2'
-      },{
+      }, {
         id: 3,
         label: '一级3'
-      },{
+      }, {
         id: 4,
         label: '一级4'
       }]
     }
   },
   methods: {
-    append(data) {
-      const newChild = { id: id ++,label:'test', children:[]}
-      if(!data.children){
+    append (data) {
+      const newChild = {id: id++, label: 'test', children: []}
+      if (!data.children) {
         this.$set(data, 'children', [])
       }
       data.children.push(newChild)
     },
-    remove(node, data) {
+    remove (node, data) {
       const parent = node.parent
       const children = parent.data.children || parent.data
       const index = children.findIndex(d => d.id === data.id)
-      children.splice(index,1)
+      children.splice(index, 1)
     }
   }
 }

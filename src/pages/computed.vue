@@ -295,7 +295,6 @@ export default {
     },
     handleItemChange (val) {
       console.log(val.length)
-      // debugger
       console.log('active item:', val)
       setTimeout(_ => {
         if (val.indexOf('江苏') > -1 && !this.options2[0].cities.length) {

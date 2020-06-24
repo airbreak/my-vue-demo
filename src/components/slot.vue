@@ -15,20 +15,20 @@
 </template>
 
 <script>
-    export default {
-        props: {
-          name: String,
-          age: Number
-        },
-        name: "test-info"
-    };
+export default {
+  props: {
+    name: String,
+    age: Number
+  },
+  name: 'test-info'
+}
 </script>
 
 <style lang="scss" scoped>
 .title-box{
   display: flex;
   justify-content: space-between;
-  align-items: center;    
+  align-items: center;
   background-color: rgba(0,0,0,.3);
   &.test-one{
     color: #ccc

@@ -1,3 +1,4 @@
+<!-- eslint-disable -->
 <template>
   <div>
     <div class="print-box">
@@ -85,12 +86,12 @@ export default {
   methods: {
     print () {
       alert()
-      printJS({
-        printable: 'printjs-form',
-        type: 'html',
-        // 继承原来的所有样式
-        targetStyles: ['*']
-      })
+      // printJS ({
+      //   printable: 'printjs-form',
+      //   type: 'html',
+      //   // 继承原来的所有样式
+      //   targetStyles: ['*']
+      // })
       // print(
       //   document.getElementById('printjs-form'), {
       //     type: 'html',

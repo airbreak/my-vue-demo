@@ -35,6 +35,8 @@ export const constantRouterMap = [
 ]
 
 export default new Router({
+  mode: 'history', // history模式
+  base: '/history/', // apache 部署时，在www的 history目录下
   scrollBehavior: () => ({ y: 0 }),
   routes: constantRouterMap
 })
@@ -195,6 +197,13 @@ export const asyncRouterMap = [
         name: 'shopping-cart',
         component: () => import('@/pages/shopping/cart'),
         meta: { title: 'Cart', icon: 'cart', keepAlive: true }
+      },
+      {
+        path: 'detail/:id',
+        name: 'detail',
+        component: () => import('@/pages/shopping/detail'),
+        meta: { title: 'List', icon: 'goods-list', keepAlive: true },
+        hidden: true
       }
     ]
   },
