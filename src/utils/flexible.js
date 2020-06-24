@@ -44,10 +44,10 @@
     }, false);
 
     if (doc.readyState === "complete") {
-        doc.body.style.fontSize = "16px";
+        doc.body.style.fontSize = "100px";
     } else {
         doc.addEventListener("DOMContentLoaded", function(e) {
-            doc.body.style.fontSize = "16px";
+            doc.body.style.fontSize = "100px";
         }, false);
     }
-})(375, 750);
+})(750, 750);
